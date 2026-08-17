@@ -1,0 +1,16 @@
+services:
+  perfume-shop-postgres:
+    image: postgres:16
+    container_name: perfume-shop-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: PerfumeShop_DB
+    ports:
+      - "5438:5432"
+    volumes:
+      - perfume_shop_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  perfume_shop_postgres_data:
