@@ -25,7 +25,6 @@ import {
 
 import authRoutes from '../src/auth/auth.routes.js';
 import userRoutes from '../src/users/user.routes.js';
-import staffRoutes from '../src/users/staff.routes.js';
 import productRoutes from '../src/products/product.routes.js';
 
 const BASE_PATH = '/api/v1';
@@ -75,11 +74,6 @@ const routes = (app) => {
   app.use(
     `${BASE_PATH}/users`,
     userRoutes
-  );
-
-  app.use(
-    `${BASE_PATH}/restaurants`,
-    staffRoutes
   );
 
   app.use(

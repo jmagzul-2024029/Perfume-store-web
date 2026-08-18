@@ -21,7 +21,7 @@ export const getProducts = async (req, res) => {
             where: {
                 isActive: true,
             },
-            order: [['createdAt', 'DESC']],
+            order: [['created_at', 'DESC']],
         });
 
         return res.status(200).json({

@@ -23,7 +23,7 @@ import { body } from 'express-validator';
 
 const router = Router();
 
-// ─── Validaciones para crear gerente (SUPER_ADMIN only) ────────────────────────
+// ─── Validaciones para crear admin (SUPER_ADMIN only) ──────────────────────────
 const validateCreateManager = [
   body('email')
     .notEmpty().withMessage('El email es obligatorio')
@@ -48,12 +48,6 @@ const validateCreateManager = [
   body('phone')
     .notEmpty().withMessage('El teléfono es obligatorio')
     .matches(/^\d{8}$/).withMessage('El teléfono debe tener exactamente 8 dígitos'),
-  body('role')
-    .notEmpty().withMessage('El rol es obligatorio')
-    .isIn(['RESTAURANT_ADMIN_ROLE', 'STAFF_ROLE']).withMessage('El rol debe ser RESTAURANT_ADMIN_ROLE o STAFF_ROLE'),
-  body('restaurant_id')
-    .notEmpty().withMessage('El ID del restaurante es obligatorio')
-    .isLength({ min: 1 }).withMessage('El ID del restaurante no puede estar vacío'),
   handleValidationErrors,
 ];
 
@@ -255,24 +249,11 @@ router.put(
 
 /**
  * @swagger
- * /api/v1/auth/profile/sync-restaurant:
- *   put:
- *     tags: [Profile]
- *     summary: Sincroniza el ID del restaurante del usuario (auto-reparación)
- */
-router.put(
-  '/profile/sync-restaurant',
-  validateJWT,
-  authController.syncRestaurant
-);
-
-/**
- * @swagger
  * /api/v1/auth/create-manager:
  *   post:
  *     tags: [Authentication]
- *     summary: Crea un gerente o personal administrativo (SUPER_ADMIN only)
- *     description: Solo administradores globales pueden crear gerentes o personal para restaurantes específicos
+ *     summary: Crea un administrador (SUPER_ADMIN only)
+ *     description: Solo el super administrador puede crear cuentas con rol ADMIN_ROLE
  */
 router.post(
   '/create-manager',
@@ -287,7 +268,7 @@ router.post(
  * /api/v1/auth/managers:
  *   get:
  *     tags: [Managers]
- *     summary: Obtiene lista de todos los gerentes (SUPER_ADMIN only)
+ *     summary: Obtiene lista de todos los administradores (SUPER_ADMIN only)
  */
 router.get(
   '/managers',
@@ -298,24 +279,10 @@ router.get(
 
 /**
  * @swagger
- * /api/v1/auth/managers/:managerId/restaurant:
- *   patch:
- *     tags: [Managers]
- *     summary: Cambia la sede de un gerente (SUPER_ADMIN only)
- */
-router.patch(
-  '/managers/:managerId/restaurant',
-  validateJWT,
-  requireSuperAdmin,
-  authController.updateManagerRestaurant
-);
-
-/**
- * @swagger
  * /api/v1/auth/managers/:managerId:
  *   delete:
  *     tags: [Managers]
- *     summary: Elimina permanentemente un gerente (SUPER_ADMIN only)
+ *     summary: Elimina permanentemente un administrador (SUPER_ADMIN only)
  */
 router.delete(
   '/managers/:managerId',

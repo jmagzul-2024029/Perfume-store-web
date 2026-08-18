@@ -1,6 +1,5 @@
 import crypto from 'crypto';
 import path from 'path';
-import Restaurant from '../src/restaurant/restaurant.model.js';
 import {
   checkUserExists,
   createNewUser,
@@ -45,7 +44,7 @@ const getExpirationTime = (timeString) => {
 
 export const registerUserHelper = async (userData) => {
   try {
-    const { email, username, password, name, surname, phone, profilePicture, role, restaurant_id } =
+    const { email, username, password, name, surname, phone, profilePicture, role } =
       userData;
 
     // Validation is now handled by express-validator middleware in routes
@@ -115,7 +114,6 @@ export const registerUserHelper = async (userData) => {
       phone,
       profilePicture: profilePictureToStore,
       role,
-      restaurant_id,
     });
 
     // Generar token de verificación de email
@@ -201,25 +199,7 @@ export const loginUserHelper = async (emailOrUsername, password) => {
     const expiresInMs = getExpirationTime(process.env.JWT_EXPIRES_IN || '30m');
     const expiresAt = new Date(Date.now() + expiresInMs);
 
-    // Verificar que el restaurante asignado al usuario exista en MongoDB
-    let validRestaurantId = fullUser.restaurantId;
-    if (validRestaurantId) {
-      const exists = await Restaurant.findById(validRestaurantId);
-      if (!exists) {
-        // Si no existe, buscar el primer restaurante activo como fallback
-        const fallback = await Restaurant.findOne({ isActive: true });
-        validRestaurantId = fallback ? fallback._id.toString() : null;
-        // Actualizar el registro del usuario en PostgreSQL
-        await user.update({ RestaurantId: validRestaurantId });
-      }
-    } else {
-      // Si el usuario no tenía restaurantId asignado, asignar uno válido
-      const fallback = await Restaurant.findOne({ isActive: true });
-      validRestaurantId = fallback ? fallback._id.toString() : null;
-      await user.update({ RestaurantId: validRestaurantId });
-    }
-
-    // Reconstruir userDetails con el ID corregido
+    // Reconstruir userDetails para la respuesta
     const userDetails = {
       id: fullUser.id,
       name: fullUser.name,
@@ -228,7 +208,6 @@ export const loginUserHelper = async (emailOrUsername, password) => {
       username: fullUser.username,
       profilePicture: fullUser.profilePicture,
       role: fullUser.role,
-      restaurantId: validRestaurantId,
     };
 
     // Generate refresh token and include in response

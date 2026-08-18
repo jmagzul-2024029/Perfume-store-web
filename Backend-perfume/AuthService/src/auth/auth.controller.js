@@ -19,7 +19,6 @@ import { uploadImage, deleteImage } from '../../helpers/cloudinary-service.js';
 import { hashPassword, verifyPassword } from '../../utils/password-utils.js';
 import crypto from 'crypto';
 import path from 'path';
-import Restaurant from '../restaurant/restaurant.model.js';
 
 const buildRefreshCookieOptions = () => ({
   httpOnly: true,
@@ -67,36 +66,19 @@ export const register = asyncHandler(async (req, res) => {
   }
 });
 
-// ─── CREATE MANAGER (SUPER_ADMIN ONLY) ────────────────────────────────────────
+// ─── CREATE ADMIN (SUPER_ADMIN ONLY) ──────────────────────────────────────────
 export const createManager = asyncHandler(async (req, res) => {
   try {
-    // Solo SUPER_ADMIN puede crear managers
+    // Solo SUPER_ADMIN puede crear administradores
     const isSuperAdmin = req.userRoleNames?.includes('SUPER_ADMIN_ROLE');
     if (!isSuperAdmin) {
       return res.status(403).json({
         success: false,
-        message: 'Solo administradores globales pueden crear gerentes o personal administrativo.',
+        message: 'Solo administradores globales pueden crear otros administradores.',
       });
     }
 
-    const { email, username, password, name, surname, phone, role, restaurant_id, profilePicture } = req.body;
-
-    // Validar que el rol sea permitido
-    const allowedRoles = ['RESTAURANT_ADMIN_ROLE', 'STAFF_ROLE'];
-    if (!role || !allowedRoles.includes(role)) {
-      return res.status(400).json({
-        success: false,
-        message: `Rol inválido. Valores permitidos: ${allowedRoles.join(', ')}`,
-      });
-    }
-
-    // Validar que sea un RESTAURANT_ADMIN_ROLE o STAFF_ROLE y tenga restaurant_id
-    if (!restaurant_id) {
-      return res.status(400).json({
-        success: false,
-        message: 'El ID del restaurante es requerido para crear gerentes o personal.',
-      });
-    }
+    const { email, username, password, name, surname, phone, profilePicture } = req.body;
 
     const userData = {
       email,
@@ -105,15 +87,14 @@ export const createManager = asyncHandler(async (req, res) => {
       name,
       surname,
       phone,
-      role,
-      restaurant_id,
+      role: 'ADMIN_ROLE',
       profilePicture: profilePicture || null,
     };
 
     const result = await registerUserHelper(userData);
     return res.status(201).json({
       ...result,
-      message: `${role === 'RESTAURANT_ADMIN_ROLE' ? 'Gerente' : 'Personal'} creado exitosamente.`,
+      message: 'Administrador creado exitosamente.',
     });
   } catch (error) {
     console.error('Error in createManager controller:', error);
@@ -485,55 +466,6 @@ export const changePassword = asyncHandler(async (req, res) => {
   }
 });
 
-// ─── SYNC RESTAURANT ──────────────────────────────────────────────────────────
-// PUT /api/v1/auth/profile/sync-restaurant
-// Auto-repara el restaurant_id del usuario si es inválido
-export const syncRestaurant = asyncHandler(async (req, res) => {
-  try {
-    const userId = req.userId;
-    const { restaurantId } = req.body;
-
-    const user = await User.findByPk(userId);
-    if (!user) {
-      return res.status(404).json({ success: false, message: 'Usuario no encontrado' });
-    }
-
-    // Verificar si el restaurante existe en MongoDB
-    let validId = restaurantId;
-    if (validId) {
-      const exists = await Restaurant.findById(validId);
-      if (!exists) validId = null;
-    }
-
-    // Si no se envió un ID o el enviado es inválido, buscar el primero disponible (como fallback)
-    if (!validId) {
-      const firstRest = await Restaurant.findOne({ isActive: true });
-      if (firstRest) {
-        validId = firstRest._id.toString();
-      }
-    }
-
-    if (validId) {
-      await user.update({ RestaurantId: validId });
-    }
-
-    const updatedUser = await getUserProfileHelper(userId);
-
-    return res.status(200).json({
-      success: true,
-      message: 'Sincronización de restaurante completada',
-      data: updatedUser
-    });
-  } catch (error) {
-    console.error('Error in syncRestaurant controller:', error);
-    return res.status(500).json({
-      success: false,
-      message: 'Error al sincronizar restaurante',
-      error: error.message
-    });
-  }
-});
-
 // POST /auth/refresh
 export const refreshToken = asyncHandler(async (req, res) => {
   // Preferir registro ya validado por middleware
@@ -587,18 +519,18 @@ export const revokeToken = asyncHandler(async (req, res) => {
   return res.status(200).json({ success: true, message: 'Refresh token revocado' });
 });
 
-// ─── GET MANAGERS (SUPER_ADMIN ONLY) ──────────────────────────────────────────
+// ─── GET ADMINS (SUPER_ADMIN ONLY) ────────────────────────────────────────────
 export const getManagers = asyncHandler(async (req, res) => {
   try {
     const isSuperAdmin = req.userRoleNames?.includes('SUPER_ADMIN_ROLE');
     if (!isSuperAdmin) {
       return res.status(403).json({
         success: false,
-        message: 'Solo administradores globales pueden ver gerentes',
+        message: 'Solo administradores globales pueden ver administradores',
       });
     }
 
-    const managers = await User.findAll({
+    const admins = await User.findAll({
       include: [
         {
           model: UserRole,
@@ -608,7 +540,7 @@ export const getManagers = asyncHandler(async (req, res) => {
             {
               model: Role,
               as: 'Role',
-              where: { Name: 'RESTAURANT_ADMIN_ROLE' },
+              where: { Name: 'ADMIN_ROLE' },
             },
           ],
         },
@@ -621,125 +553,29 @@ export const getManagers = asyncHandler(async (req, res) => {
       order: [['CreatedAt', 'DESC']],
     });
 
-    const managersWithRestaurant = await Promise.all(
-      managers.map(async (manager) => {
-        let restaurantName = 'Sin sede';
-        if (manager.RestaurantId) {
-          const restaurant = await Restaurant.findById(manager.RestaurantId).select('name').lean();
-          restaurantName = restaurant?.name || 'Sede Desconocida';
-        }
-
-        return {
-          id: manager.Id,
-          name: manager.Name,
-          surname: manager.Surname,
-          email: manager.Email,
-          phone: manager.UserProfile?.Phone || '',
-          restaurant_id: manager.RestaurantId || '',
-          restaurantName,
-          createdAt: manager.CreatedAt,
-        };
-      })
-    );
-
     return res.status(200).json({
       success: true,
-      data: managersWithRestaurant,
-      message: 'Gerentes obtenidos exitosamente',
+      data: admins.map((admin) => ({
+        id: admin.Id,
+        name: admin.Name,
+        surname: admin.Surname,
+        email: admin.Email,
+        phone: admin.UserProfile?.Phone || '',
+        createdAt: admin.CreatedAt,
+      })),
+      message: 'Administradores obtenidos exitosamente',
     });
   } catch (error) {
     console.error('Error in getManagers controller:', error);
     res.status(500).json({
       success: false,
-      message: 'Error al obtener gerentes',
+      message: 'Error al obtener administradores',
       error: error.message,
     });
   }
 });
 
-// ─── UPDATE MANAGER RESTAURANT (SUPER_ADMIN ONLY) ──────────────────────────────
-export const updateManagerRestaurant = asyncHandler(async (req, res) => {
-  try {
-    const isSuperAdmin = req.userRoleNames?.includes('SUPER_ADMIN_ROLE');
-    if (!isSuperAdmin) {
-      return res.status(403).json({
-        success: false,
-        message: 'Solo administradores globales pueden cambiar sedes de gerentes',
-      });
-    }
-
-    const { managerId } = req.params;
-    const { restaurant_id } = req.body;
-
-    if (!restaurant_id) {
-      return res.status(400).json({
-        success: false,
-        message: 'El ID de la sede es requerido',
-      });
-    }
-
-    // Verificar que el gerente existe
-    const manager = await User.findByPk(managerId);
-    if (!manager) {
-      return res.status(404).json({
-        success: false,
-        message: 'Gerente no encontrado',
-      });
-    }
-
-    const managerRoles = await UserRole.findAll({
-      where: { UserId: manager.Id },
-      include: [
-        {
-          model: Role,
-          as: 'Role',
-          where: { Name: 'RESTAURANT_ADMIN_ROLE' },
-        },
-      ],
-    });
-
-    if (!managerRoles.length) {
-      return res.status(400).json({
-        success: false,
-        message: 'El usuario no es un gerente de sede',
-      });
-    }
-
-    // Verificar que la sede existe
-    const restaurant = await Restaurant.findById(restaurant_id);
-    if (!restaurant) {
-      return res.status(404).json({
-        success: false,
-        message: 'Sede no encontrada',
-      });
-    }
-
-    // Actualizar la sede del gerente
-    manager.RestaurantId = restaurant_id;
-    await manager.save();
-
-    return res.status(200).json({
-      success: true,
-      message: `Gerente ${manager.name} ${manager.surname} asignado a ${restaurant.name}`,
-      data: {
-        id: manager.id,
-        name: manager.name,
-        surname: manager.surname,
-        restaurant_id: manager.restaurant_id,
-        restaurantName: restaurant.name,
-      },
-    });
-  } catch (error) {
-    console.error('Error in updateManagerRestaurant controller:', error);
-    res.status(500).json({
-      success: false,
-      message: 'Error al cambiar la sede del gerente',
-      error: error.message,
-    });
-  }
-});
-
-// ─── DELETE MANAGER (SUPER_ADMIN ONLY) ─────────────────────────────────────────
+// ─── DELETE ADMIN (SUPER_ADMIN ONLY) ───────────────────────────────────────────
 export const deleteManager = asyncHandler(async (req, res) => {
   try {
     const isSuperAdmin = req.userRoleNames?.includes('SUPER_ADMIN_ROLE');
@@ -767,15 +603,13 @@ export const deleteManager = asyncHandler(async (req, res) => {
       });
     }
 
-    // Verificar que sea un gerente o staff (no un super admin)
-    const isManagerOrStaff = manager.UserRoles?.some(ur => 
-      ['RESTAURANT_ADMIN_ROLE', 'STAFF_ROLE'].includes(ur.Role.Name)
-    );
+    // Verificar que sea un admin (no un super admin)
+    const isAdmin = manager.UserRoles?.some(ur => ur.Role.Name === 'ADMIN_ROLE');
 
-    if (!isManagerOrStaff) {
+    if (!isAdmin) {
       return res.status(400).json({
         success: false,
-        message: 'Solo se pueden eliminar usuarios con rol de Gerente o Staff desde este apartado',
+        message: 'Solo se pueden eliminar usuarios con rol de Admin desde este apartado',
       });
     }
 
