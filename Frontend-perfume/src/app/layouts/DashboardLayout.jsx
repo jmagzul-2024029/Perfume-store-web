@@ -38,7 +38,7 @@ export const DashboardLayout = () => {
 
                     <button
                         onClick={logout}
-                        className="flex items-center gap-2 rounded-full bg-[#1c1712] px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white transition hover:bg-[#b76e79]"
+                        className="flex items-center gap-2 rounded-full bg-[#1c1712] px-4 py-2 text-[10px] font-black uppercase tracking-widest text-white transition hover:bg-[#33333392]"
                     >
                         <LogOut size={14} />
                         <span className="hidden sm:inline">Cerrar sesión</span>

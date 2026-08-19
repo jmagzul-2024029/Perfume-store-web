@@ -29,7 +29,7 @@ export const SidebarMenuCard = ({ onLogout }) => {
         <li className="w-full">
           <button 
             onClick={onLogout}
-            className="w-full flex items-center gap-4 p-4 font-black rounded-2xl text-zinc-700 hover:bg-[#fbeef0] hover:text-[#b76e79] focus:bg-gradient-to-r from-[#d9a8ae] to-[#b76e79] focus:text-white transition-all duration-300 group"
+            className="w-full flex items-center gap-4 p-4 font-black rounded-2xl text-zinc-700 hover:bg-[#fbeef0] hover:text-[#1f138a] focus:bg-linear-to-r from-[#d9a8ae] to-[#b76e79] focus:text-white transition-all duration-300 group"
           >
             <LogOut className="w-6 h-6 group-focus:text-white transition-colors" />
             <span className="uppercase tracking-widest text-[10px]">Cerrar Sesión</span>
