@@ -9,7 +9,6 @@ const emptyForm = {
     description: '',
     price: '',
     stock: '',
-    image: '',
     category: '',
     gender: 'UNISEX',
     size: '',
@@ -28,6 +27,12 @@ export default function AdminProductsPage() {
 
     const [form, setForm] =
         useState(emptyForm);
+
+    const [imageFile, setImageFile] =
+        useState(null);
+
+    const [imagePreview, setImagePreview] =
+        useState('');
 
     const [editingId, setEditingId] =
         useState(null);
@@ -49,8 +54,22 @@ export default function AdminProductsPage() {
         }));
     };
 
+    const handleImageChange = (event) => {
+        const file = event.target.files?.[0];
+
+        if (!file) {
+            setImageFile(null);
+            return;
+        }
+
+        setImageFile(file);
+        setImagePreview(URL.createObjectURL(file));
+    };
+
     const resetForm = () => {
         setForm(emptyForm);
+        setImageFile(null);
+        setImagePreview('');
         setEditingId(null);
         setShowForm(false);
     };
@@ -71,11 +90,20 @@ export default function AdminProductsPage() {
             return;
         }
 
-        const payload = {
-            ...form,
-            price: Number(form.price),
-            stock: Number(form.stock),
-        };
+        const payload = new FormData();
+
+        payload.append('name', form.name);
+        payload.append('brand', form.brand);
+        payload.append('description', form.description);
+        payload.append('price', Number(form.price));
+        payload.append('stock', Number(form.stock));
+        payload.append('category', form.category);
+        payload.append('gender', form.gender);
+        payload.append('size', form.size);
+
+        if (imageFile) {
+            payload.append('image', imageFile);
+        }
 
         let result;
 
@@ -112,12 +140,14 @@ export default function AdminProductsPage() {
                 product.description || '',
             price: product.price ?? '',
             stock: product.stock ?? '',
-            image: product.image || '',
             category: product.category || '',
             gender:
                 product.gender || 'UNISEX',
             size: product.size || '',
         });
+
+        setImageFile(null);
+        setImagePreview(product.image || '');
 
         setShowForm(true);
     };
@@ -322,18 +352,35 @@ export default function AdminProductsPage() {
                                 />
                             </div>
 
-                            <div>
+                            <div className="md:col-span-2">
                                 <label className="mb-2 block text-xs font-black uppercase">
-                                    URL de imagen
+                                    Imagen del perfume
                                 </label>
 
-                                <input
-                                    name="image"
-                                    value={form.image}
-                                    onChange={handleChange}
-                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#b98c52]"
-                                    placeholder="https://..."
-                                />
+                                <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+
+                                    {imagePreview && (
+                                        <img
+                                            src={imagePreview}
+                                            alt="Previsualización"
+                                            className="h-24 w-24 flex-shrink-0 border-2 border-[#1c1712] object-cover"
+                                        />
+                                    )}
+
+                                    <input
+                                        type="file"
+                                        accept="image/jpeg,image/jpg,image/png,image/gif,image/webp"
+                                        onChange={handleImageChange}
+                                        className="w-full border-2 border-[#1c1712] bg-white px-4 py-3 text-sm outline-none file:mr-4 file:border-0 file:bg-[#1c1712] file:px-4 file:py-2 file:text-xs file:font-black file:uppercase file:text-white"
+                                    />
+
+                                </div>
+
+                                {editingId && !imageFile && (
+                                    <p className="mt-2 text-xs text-[#6b5e4e]">
+                                        Deja este campo vacío para conservar la imagen actual.
+                                    </p>
+                                )}
                             </div>
 
                         </div>

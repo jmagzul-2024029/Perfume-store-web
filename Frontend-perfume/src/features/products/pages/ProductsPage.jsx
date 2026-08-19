@@ -23,7 +23,7 @@ export default function ProductsPage() {
                 <div className="mx-auto max-w-7xl">
 
                     <span className="text-sm font-black uppercase tracking-[0.35em] text-[#b98c52]">
-                        PERFUME SHOP
+                        L'ESSENCE DE FRANCE
                     </span>
 
                     <h1 className="mt-4 max-w-4xl text-5xl font-black uppercase tracking-tighter md:text-7xl">
