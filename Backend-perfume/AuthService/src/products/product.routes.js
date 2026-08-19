@@ -10,6 +10,7 @@ import {
 
 import { validateJWT } from '../../middlewares/validate-JWT.js';
 import { requireRole } from '../../middlewares/require-role.js';
+import { upload, handleUploadError } from '../../helpers/file-upload.js';
 
 const router = Router();
 
@@ -33,6 +34,8 @@ router.post(
     '/',
     validateJWT,
     requireRole('SUPER_ADMIN_ROLE', 'ADMIN_ROLE'),
+    upload.single('image'),
+    handleUploadError,
     createProduct
 );
 
@@ -40,6 +43,8 @@ router.put(
     '/:id',
     validateJWT,
     requireRole('SUPER_ADMIN_ROLE', 'ADMIN_ROLE'),
+    upload.single('image'),
+    handleUploadError,
     updateProduct
 );
 

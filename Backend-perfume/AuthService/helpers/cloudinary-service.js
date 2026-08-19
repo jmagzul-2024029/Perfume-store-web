@@ -12,7 +12,7 @@ cloudinary.config({
   api_secret: config.cloudinary.apiSecret,
 });
 
-export const uploadImage = async (filePath, fileName) => {
+export const uploadImage = async (filePath, fileName, transformationOverride) => {
   try {
     const folder = config.cloudinary.folder;
 
@@ -27,7 +27,7 @@ export const uploadImage = async (filePath, fileName) => {
       public_id: fileNameWithoutExt,
       folder: folder,
       resource_type: 'image',
-      transformation: [
+      transformation: transformationOverride || [
         { width: 400, height: 400, crop: 'fill', gravity: 'face' },
         { quality: 'auto', fetch_format: 'auto' },
       ],

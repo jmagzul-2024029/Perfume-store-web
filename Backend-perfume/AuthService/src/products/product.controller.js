@@ -1,4 +1,20 @@
+import crypto from 'crypto';
+import path from 'path';
 import Product from './product.model.js';
+import { uploadImage, deleteImage } from '../../helpers/cloudinary-service.js';
+
+const PRODUCT_IMAGE_TRANSFORMATION = [
+    { width: 800, height: 800, crop: 'pad', background: 'white' },
+    { quality: 'auto', fetch_format: 'auto' },
+];
+
+const uploadProductImage = async (file) => {
+    const ext = path.extname(file.path);
+    const randomHex = crypto.randomBytes(6).toString('hex');
+    const cloudinaryFileName = `product-${randomHex}${ext}`;
+
+    return uploadImage(file.path, cloudinaryFileName, PRODUCT_IMAGE_TRANSFORMATION);
+};
 
 const normalizeProduct = (product) => {
     if (!product) return null;
@@ -86,11 +102,16 @@ export const createProduct = async (req, res) => {
             description,
             price,
             stock,
-            image,
             category,
             gender,
             size,
         } = req.body;
+
+        let imageUrl = null;
+
+        if (req.file) {
+            imageUrl = await uploadProductImage(req.file);
+        }
 
         const product = await Product.create({
             name,
@@ -98,7 +119,7 @@ export const createProduct = async (req, res) => {
             description,
             price,
             stock,
-            image,
+            image: imageUrl,
             category,
             gender,
             size,
@@ -151,12 +172,25 @@ export const updateProduct = async (req, res) => {
             description,
             price,
             stock,
-            image,
             category,
             gender,
             size,
             isActive,
         } = req.body;
+
+        let imageUrl = product.image;
+
+        if (req.file) {
+            if (product.image) {
+                try {
+                    await deleteImage(product.image);
+                } catch (err) {
+                    console.warn('No se pudo eliminar la imagen anterior de Cloudinary:', err.message);
+                }
+            }
+
+            imageUrl = await uploadProductImage(req.file);
+        }
 
         await product.update({
             name,
@@ -164,7 +198,7 @@ export const updateProduct = async (req, res) => {
             description,
             price,
             stock,
-            image,
+            image: imageUrl,
             category,
             gender,
             size,
