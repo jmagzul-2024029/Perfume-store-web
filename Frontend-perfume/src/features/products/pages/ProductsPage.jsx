@@ -98,12 +98,12 @@ export default function ProductsPage() {
 
                     {!isLoading &&
                         products.length > 0 && (
-                            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
 
                                 {products.map((product) => (
                                     <article
                                         key={product.id}
-                                        className="group overflow-hidden border-2 border-[#1c1712] bg-white shadow-[8px_8px_0px_#1c1712] transition-all duration-300 hover:-translate-y-1 hover:shadow-[12px_12px_0px_#b76e79]"
+                                        className="group overflow-hidden border-2 border-[#1c1712] bg-white shadow-[8px_8px_0px_#808080] transition-all duration-300 hover:-translate-y-1 hover:shadow-[12px_12px_0px_#000000]"
                                     >
 
                                         <div className="aspect-[4/5] overflow-hidden bg-[#f7eef0]">
@@ -142,7 +142,7 @@ export default function ProductsPage() {
 
                                                 <Link
                                                     to={`/perfumes/${product.id}`}
-                                                    className="border-2 border-[#1c1712] bg-[#1c1712] px-4 py-2 text-xs font-black uppercase tracking-wider text-white transition hover:bg-[#b76e79]"
+                                                    className="border-2 border-[#1c1712] bg-[#1c1712] px-4 py-2 text-xs font-black uppercase tracking-wider text-white transition hover:bg-[#8b0000]"
                                                 >
                                                     Ver perfume
                                                 </Link>

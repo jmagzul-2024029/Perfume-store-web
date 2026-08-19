@@ -66,9 +66,10 @@ export default function ProductDetailPage() {
 
     const product = selectedProduct;
 
-    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '50200000000';
+    const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '50258620489';
     const whatsappMessage = encodeURIComponent(
-        `Hola, me interesa el perfume "${product.name}" (${product.brand}) - Q${Number(product.price).toFixed(2)}. ¿Está disponible?`
+        `Hola, me interesa el perfume "${product.name}" (Marca ${product.brand}) - Q${Number(product.price).toFixed(2)}. 
+        ¿Está disponible?`
     );
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 
@@ -95,7 +96,7 @@ export default function ProductDetailPage() {
                                 className="h-full w-full object-cover"
                             />
                         ) : (
-                            <div className="flex h-full min-h-[500px] items-center justify-center text-[#6b5c5e]">
+                            <div className="flex h-full min-h-500px items-center justify-center text-[#6b5c5e]">
                                 Sin imagen
                             </div>
                         )}
@@ -108,7 +109,7 @@ export default function ProductDetailPage() {
                             {product.brand}
                         </span>
 
-                        <h1 className="mt-4 text-4xl font-black uppercase tracking-tighter md:text-6xl">
+                        <h1 className="mt-4 text-4xl font-black uppercase tracking-tighter md:text-4xl">
                             {product.name}
                         </h1>
 
@@ -172,7 +173,7 @@ export default function ProductDetailPage() {
                                 href={whatsappUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="mt-8 flex items-center justify-center gap-2 border-2 border-[#1c1712] bg-[#1c1712] px-6 py-4 text-sm font-black uppercase tracking-widest text-white transition hover:bg-[#b76e79]"
+                                className="mt-8 flex items-center justify-center gap-2 border-2 border-[#1c1712] bg-[#1c1712] px-6 py-4 text-sm font-black uppercase tracking-widest text-white transition hover:bg-[#25d366]"
                             >
                                 Consultar por WhatsApp
                             </a>

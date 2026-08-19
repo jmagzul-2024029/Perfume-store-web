@@ -202,7 +202,7 @@ export default function AdminProductsPage() {
                                 setShowForm(true);
                             }
                         }}
-                        className="border-2 border-[#1c1712] bg-[#1c1712] px-6 py-3 text-sm font-black uppercase tracking-wider text-white transition hover:bg-[#b76e79]"
+                        className="border-2 border-[#1c1712] bg-[#1c1712] px-6 py-3 text-sm font-black uppercase tracking-wider text-white transition hover:bg-[#22C55E]"
                     >
                         {showForm
                             ? 'Cancelar'
