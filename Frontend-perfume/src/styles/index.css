@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-@theme {
-  /* Definición de colores personalizados para Tailwind v4 */
+/* Use standard CSS variables so editors and CSS tooling recognize this block. */
+:root {
   --color-primary-50: #fefcf8;
   --color-primary-100: #faf5ec;
   --color-primary-200: #f7f0e2;

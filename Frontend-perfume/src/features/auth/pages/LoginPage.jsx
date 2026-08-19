@@ -117,7 +117,7 @@ const LoginPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#fffaf3] flex items-center justify-center px-4 py-6 sm:px-6 relative overflow-hidden font-outfit">
+    <main className="min-h-screen bg-[#fffaf3] flex items-center justify-center px-4 py-8 sm:px-6 relative overflow-hidden font-outfit">
 
       {/* Decoración de fondo */}
       <div className="absolute -top-24 -right-24 w-64 h-64 sm:w-80 sm:h-80 bg-[#b98c52] opacity-5 border-4 border-[#1c1712] rotate-12 pointer-events-none" />
@@ -125,7 +125,7 @@ const LoginPage = () => {
       <div className="absolute -bottom-32 -left-32 w-72 h-72 bg-[#b98c52] opacity-5 border-4 border-[#1c1712] -rotate-12 pointer-events-none" />
 
       {/* Contenedor principal */}
-      <div className="relative z-10 w-full max-w-5xl grid grid-cols-1 lg:grid-cols-12 bg-white border-2 sm:border-4 border-[#1c1712] shadow-[8px_8px_0px_#1c1712] sm:shadow-[20px_20px_0px_#1c1712] overflow-hidden">
+      <div className="relative z-10 w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 bg-white border-2 sm:border-4 border-[#1c1712] shadow-[8px_8px_0px_#1c1712] sm:shadow-[14px_14px_0px_#1c1712] overflow-hidden">
 
         {/* ================================
             FORMULARIO
@@ -142,7 +142,7 @@ const LoginPage = () => {
           transition={{
             duration: 0.5,
           }}
-          className="lg:col-span-5 p-6 sm:p-8 md:p-10 lg:p-12 flex flex-col justify-center"
+          className="lg:col-span-5 p-4 sm:p-5 md:p-6 lg:p-6 flex flex-col justify-center"
         >
 
           {/* Logo y encabezado */}
@@ -158,7 +158,7 @@ const LoginPage = () => {
               L'ESSENCE DE FRANCE
             </p>
 
-            <h1 className="text-3xl sm:text-4xl font-black text-[#1c1712] uppercase tracking-tighter leading-none mb-3">
+            <h1 className="text-2xl sm:text-3xl font-black text-[#1c1712] uppercase tracking-tighter leading-none mb-3">
               Acceso{' '}
               <span className="text-[#b98c52]">
                 Administrativo
@@ -172,7 +172,7 @@ const LoginPage = () => {
 
           {/* Formulario */}
           <form
-            className="space-y-5 sm:space-y-6"
+            className="space-y-4 sm:space-y-5"
             onSubmit={handleSubmit}
           >
 
@@ -300,7 +300,7 @@ const LoginPage = () => {
           transition={{
             duration: 0.7,
           }}
-          className="hidden lg:block lg:col-span-7 relative min-h-[650px] bg-[#1c1712]"
+          className="hidden lg:block lg:col-span-7 relative min-h-200px bg-ink"
         >
 
           <AnimatePresence mode="wait">
@@ -338,7 +338,7 @@ const LoginPage = () => {
               L'ESSENCE DE FRANCE
             </p>
 
-            <h2 className="text-4xl xl:text-5xl font-black uppercase tracking-tighter text-white leading-none">
+            <h2 className="text-3xl xl:text-4xl font-black uppercase tracking-tighter text-white leading-none">
               Perfumes que
               <br /> {/* salto */}
               <span className="text-[#caa56d]">
