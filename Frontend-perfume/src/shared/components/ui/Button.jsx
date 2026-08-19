@@ -15,17 +15,17 @@ export const Button = ({
 
   const variants = {
     primary: isSimple 
-      ? 'bg-[#1c1712] text-[#fffaf3] border-2 border-[#1c1712] shadow-[4px_4px_0px_#b98c52]' 
-      : 'bg-[#1c1712] text-[#fffaf3] border-4 border-[#1c1712] shadow-[6px_6px_0px_#b98c52] hover:shadow-[8px_8px_0px_#b98c52]',
+      ? 'bg-[#1c1712] text-[#fdfbfa] border-2 border-[#1c1712] shadow-[4px_4px_0px_#b76e79]' 
+      : 'bg-[#1c1712] text-[#fdfbfa] border-4 border-[#1c1712] shadow-[6px_6px_0px_#b76e79] hover:shadow-[8px_8px_0px_#b76e79]',
     secondary: isSimple
-      ? 'bg-[#b98c52] text-[#1c1712] border-2 border-[#1c1712] shadow-[4px_4px_0px_#1c1712]'
-      : 'bg-[#b98c52] text-[#1c1712] border-4 border-[#1c1712] shadow-[6px_6px_0px_#1c1712] hover:shadow-[8px_8px_0px_#1c1712]',
+      ? 'bg-[#b76e79] text-[#1c1712] border-2 border-[#1c1712] shadow-[4px_4px_0px_#1c1712]'
+      : 'bg-[#b76e79] text-[#1c1712] border-4 border-[#1c1712] shadow-[6px_6px_0px_#1c1712] hover:shadow-[8px_8px_0px_#1c1712]',
     ghost: isSimple
-      ? 'bg-[#fffaf3] text-[#1c1712] border-2 border-[#1c1712] shadow-[3px_3px_0px_#1c1712]'
-      : 'bg-[#fffaf3] text-[#1c1712] border-4 border-[#1c1712] shadow-[4px_4px_0px_#1c1712] hover:shadow-[6px_6px_0px_#1c1712]',
+      ? 'bg-[#fdfbfa] text-[#1c1712] border-2 border-[#1c1712] shadow-[3px_3px_0px_#1c1712]'
+      : 'bg-[#fdfbfa] text-[#1c1712] border-4 border-[#1c1712] shadow-[4px_4px_0px_#1c1712] hover:shadow-[6px_6px_0px_#1c1712]',
     danger: isSimple
-      ? 'bg-[#ef4444] text-[#fffaf3] border-2 border-[#1c1712] shadow-[3px_3px_0px_#1c1712]'
-      : 'bg-[#ef4444] text-[#fffaf3] border-4 border-[#1c1712] shadow-[4px_4px_0px_#1c1712] hover:shadow-[6px_6px_0px_#1c1712]'
+      ? 'bg-[#ef4444] text-[#fdfbfa] border-2 border-[#1c1712] shadow-[3px_3px_0px_#1c1712]'
+      : 'bg-[#ef4444] text-[#fdfbfa] border-4 border-[#1c1712] shadow-[4px_4px_0px_#1c1712] hover:shadow-[6px_6px_0px_#1c1712]'
   };
 
   return (

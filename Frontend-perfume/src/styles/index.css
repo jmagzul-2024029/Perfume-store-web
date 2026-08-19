@@ -2,24 +2,24 @@
 
 /* Use standard CSS variables so editors and CSS tooling recognize this block. */
 :root {
-  --color-primary-50: #fefcf8;
-  --color-primary-100: #faf5ec;
-  --color-primary-200: #f7f0e2;
-  --color-primary-300: #f1e4cd;
-  --color-primary-400: #e8c97f;
-  --color-primary-500: #caa56d;
-  /* Dorado Principal */
-  --color-primary-600: #a98042;
-  --color-primary-700: #8f6a43;
+  --color-primary-50: #fdfbfa;
+  --color-primary-100: #f9f1f2;
+  --color-primary-200: #f7eef0;
+  --color-primary-300: #f0dde1;
+  --color-primary-400: #cf919c;
+  --color-primary-500: #b76e79;
+  /* Rose Gold Principal */
+  --color-primary-600: #9c525d;
+  --color-primary-700: #7d3f48;
 
   --color-ink: #1c1712;
   /* Negro cálido / Texto principal */
-  --color-muted-brown: #6b5e4e;
+  --color-muted-brown: #6b5c5e;
   /* Texto secundario */
 
   /* Sombras personalizadas */
   --shadow-premium: 0 20px 50px rgba(28, 23, 18, 0.05);
-  --shadow-gold: 0 10px 30px rgba(202, 165, 109, 0.15);
+  --shadow-gold: 0 10px 30px rgba(183, 110, 121, 0.18);
 }
 
 @layer base {

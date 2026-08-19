@@ -16,24 +16,24 @@ export default function ProductsPage() {
     }, [fetchProducts]);
 
     return (
-        <main className="min-h-screen bg-[#fffaf3] text-[#1c1712]">
+        <main className="min-h-screen bg-[#fdfbfa] text-[#1c1712]">
 
             {/* HERO */}
             <section className="px-6 py-20 md:px-12 lg:px-20">
                 <div className="mx-auto max-w-7xl">
 
-                    <span className="text-sm font-black uppercase tracking-[0.35em] text-[#b98c52]">
+                    <span className="text-sm font-black uppercase tracking-[0.35em] text-[#b76e79]">
                         L'ESSENCE DE FRANCE
                     </span>
 
                     <h1 className="mt-4 max-w-4xl text-5xl font-black uppercase tracking-tighter md:text-7xl">
                         Encuentra tu
-                        <span className="block text-[#b98c52]">
+                        <span className="block text-[#b76e79]">
                             fragancia ideal
                         </span>
                     </h1>
 
-                    <p className="mt-6 max-w-2xl text-lg text-[#6b5e4e]">
+                    <p className="mt-6 max-w-2xl text-lg text-[#6b5c5e]">
                         Descubre nuestra colección de perfumes
                         y encuentra una fragancia que vaya
                         contigo.
@@ -49,7 +49,7 @@ export default function ProductsPage() {
                     <div className="mb-10 flex items-end justify-between gap-6 border-b-2 border-[#1c1712]/10 pb-5">
 
                         <div>
-                            <span className="text-xs font-black uppercase tracking-widest text-[#b98c52]">
+                            <span className="text-xs font-black uppercase tracking-widest text-[#b76e79]">
                                 Colección
                             </span>
 
@@ -58,7 +58,7 @@ export default function ProductsPage() {
                             </h2>
                         </div>
 
-                        <span className="text-sm font-bold text-[#6b5e4e]">
+                        <span className="text-sm font-bold text-[#6b5c5e]">
                             {products.length} productos
                         </span>
 
@@ -83,12 +83,12 @@ export default function ProductsPage() {
                     {!isLoading &&
                         !error &&
                         products.length === 0 && (
-                            <div className="border-2 border-[#1c1712] bg-white p-12 text-center shadow-[8px_8px_0px_#b98c52]">
+                            <div className="border-2 border-[#1c1712] bg-white p-12 text-center shadow-[8px_8px_0px_#b76e79]">
                                 <h3 className="text-2xl font-black uppercase">
                                     Aún no hay perfumes
                                 </h3>
 
-                                <p className="mt-3 text-[#6b5e4e]">
+                                <p className="mt-3 text-[#6b5c5e]">
                                     El catálogo estará disponible
                                     cuando el administrador agregue
                                     productos.
@@ -103,10 +103,10 @@ export default function ProductsPage() {
                                 {products.map((product) => (
                                     <article
                                         key={product.id}
-                                        className="group overflow-hidden border-2 border-[#1c1712] bg-white shadow-[8px_8px_0px_#1c1712] transition-all duration-300 hover:-translate-y-1 hover:shadow-[12px_12px_0px_#b98c52]"
+                                        className="group overflow-hidden border-2 border-[#1c1712] bg-white shadow-[8px_8px_0px_#1c1712] transition-all duration-300 hover:-translate-y-1 hover:shadow-[12px_12px_0px_#b76e79]"
                                     >
 
-                                        <div className="aspect-[4/5] overflow-hidden bg-[#f7f0e2]">
+                                        <div className="aspect-[4/5] overflow-hidden bg-[#f7eef0]">
                                             {product.image ? (
                                                 <img
                                                     src={product.image}
@@ -114,7 +114,7 @@ export default function ProductsPage() {
                                                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                                                 />
                                             ) : (
-                                                <div className="flex h-full items-center justify-center text-[#6b5e4e]">
+                                                <div className="flex h-full items-center justify-center text-[#6b5c5e]">
                                                     Sin imagen
                                                 </div>
                                             )}
@@ -122,7 +122,7 @@ export default function ProductsPage() {
 
                                         <div className="p-6">
 
-                                            <span className="text-xs font-black uppercase tracking-widest text-[#b98c52]">
+                                            <span className="text-xs font-black uppercase tracking-widest text-[#b76e79]">
                                                 {product.brand}
                                             </span>
 
@@ -130,7 +130,7 @@ export default function ProductsPage() {
                                                 {product.name}
                                             </h3>
 
-                                            <p className="mt-3 line-clamp-3 text-sm text-[#6b5e4e]">
+                                            <p className="mt-3 line-clamp-3 text-sm text-[#6b5c5e]">
                                                 {product.description}
                                             </p>
 
@@ -142,7 +142,7 @@ export default function ProductsPage() {
 
                                                 <Link
                                                     to={`/perfumes/${product.id}`}
-                                                    className="border-2 border-[#1c1712] bg-[#1c1712] px-4 py-2 text-xs font-black uppercase tracking-wider text-white transition hover:bg-[#b98c52]"
+                                                    className="border-2 border-[#1c1712] bg-[#1c1712] px-4 py-2 text-xs font-black uppercase tracking-wider text-white transition hover:bg-[#b76e79]"
                                                 >
                                                     Ver perfume
                                                 </Link>

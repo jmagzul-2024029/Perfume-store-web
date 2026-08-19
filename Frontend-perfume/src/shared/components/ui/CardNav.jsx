@@ -134,7 +134,7 @@ const CardNav = ({
     <div className={`card-nav-container sticky top-4 md:top-6 z-[99] mx-auto w-[min(92vw,880px)] ${className}`}>
       <nav
         ref={navRef}
-        className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-[1.5rem] shadow-[0_24px_80px_rgba(47,35,23,0.16)] border border-[#dcc7a5]/80 relative overflow-hidden will-change-[height] backdrop-blur-xl`}
+        className={`card-nav ${isExpanded ? 'open' : ''} block h-[60px] p-0 rounded-[1.5rem] shadow-[0_24px_80px_rgba(47,35,23,0.16)] border border-[#e3c3c8]/80 relative overflow-hidden will-change-[height] backdrop-blur-xl`}
         style={{ backgroundColor: baseColor }}
       >
         <div className="card-nav-top absolute inset-x-0 top-0 h-[60px] flex items-center justify-between p-2 pl-[1.1rem] z-[2]">

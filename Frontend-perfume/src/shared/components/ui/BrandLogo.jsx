@@ -1,4 +1,4 @@
-import LogoBuenProvecho from '../../../assets/img/LogoBuenProvecho.png';
+import LogoPerfumes from '../../../assets/img/Logo-Perfume.jpg';
 
 const sizeMap = {
   sm: 'h-14 w-auto',
@@ -12,7 +12,7 @@ export const BrandLogo = ({ size = 'md', className = '', imageClassName = '' }) 
   
   return (
     <img
-      src={LogoBuenProvecho}
+      src={LogoPerfumes}
       alt="Buen Provecho"
       className={`${sizeClass} object-contain mix-blend-multiply ${imageClassName} ${className}`}
     />

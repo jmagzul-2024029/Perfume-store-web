@@ -1,12 +1,11 @@
 'use strict';
 
 import { Sequelize } from 'sequelize';
-import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-// ─── PostgreSQL (Auth & Users) ──────────────────────────────────────────────
+// ─── PostgreSQL (Auth & Users & Products) ───────────────────────────────────
 export const sequelize = new Sequelize({
   dialect: 'postgres',
   host: process.env.DB_HOST,
@@ -30,19 +29,6 @@ export const sequelize = new Sequelize({
   },
 });
 
-// ─── MongoDB (para validar restaurantes) ────────────────────────────────────
-const connectMongo = async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      serverSelectionTimeoutMS: 5000,
-      maxPoolSize: 5,
-    });
-    console.log('MongoDB | Conectado (AuthService - read-only para restaurantes)');
-  } catch (error) {
-    console.warn('MongoDB | No se pudo conectar (login sin validación de restaurante):', error.message);
-  }
-};
-
 export const dbConnection = async () => {
   try {
     await sequelize.authenticate();
@@ -57,15 +43,12 @@ export const dbConnection = async () => {
     console.error(`Error al conectar PostgreSQL: ${error}`);
     process.exit(1);
   }
-
-  await connectMongo();
 };
 
 const gracefulShutdown = async (signal) => {
   console.log(`Received ${signal}. Closing database connections...`);
   try {
     await sequelize.close();
-    await mongoose.connection.close();
     console.log('Database connections closed successfully');
     process.exit(0);
   } catch (error) {

@@ -40,13 +40,13 @@ export const sendVerificationEmail = async (email, name, verificationToken) => {
     const verificationUrl = `${frontendUrl}/verify-email?token=${verificationToken}`;
 
     const mailOptions = {
-      from: `Gestión de Restaurantes <${config.smtp.fromEmail}>`,
+      from: `Perfume Shop <${config.smtp.fromEmail}>`,
       to: email,
-      subject: 'Verifica tu cuenta de Gestión de Restaurantes',
+      subject: 'Verifica tu cuenta de Perfume Shop',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
           <div style="background-color: #4f46e5; padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">Gestión de Restaurantes</h1>
+            <h1 style="color: white; margin: 0;">Perfume Shop</h1>
           </div>
           <div style="padding: 30px; background-color: #ffffff;">
             <h2 style="color: #111827; margin-top: 0;">¡Hola ${name}!</h2>
@@ -83,13 +83,13 @@ export const sendPasswordResetEmail = async (email, name, resetToken) => {
     const resetUrl = `${frontendUrl}/reset-password?token=${resetToken}`;
 
     const mailOptions = {
-      from: `Gestión de Restaurantes <${config.smtp.fromEmail}>`,
+      from: `Perfume Shop <${config.smtp.fromEmail}>`,
       to: email,
       subject: 'Recuperación de contraseña',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
           <div style="background-color: #4f46e5; padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">Gestión de Restaurantes</h1>
+            <h1 style="color: white; margin: 0;">Perfume Shop</h1>
           </div>
           <div style="padding: 30px; background-color: #ffffff;">
             <h2 style="color: #111827; margin-top: 0;">Hola ${name},</h2>
@@ -123,13 +123,13 @@ export const sendWelcomeEmail = async (email, name) => {
 
   try {
     const mailOptions = {
-      from: `Gestión de Restaurantes <${config.smtp.fromEmail}>`,
+      from: `Perfume Shop <${config.smtp.fromEmail}>`,
       to: email,
-      subject: '¡Bienvenido a Gestión de Restaurantes!',
+      subject: '¡Bienvenido a Perfume Shop!',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
           <div style="background-color: #4f46e5; padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">Gestión de Restaurantes</h1>
+            <h1 style="color: white; margin: 0;">Perfume Shop</h1>
           </div>
           <div style="padding: 30px; background-color: #ffffff;">
             <h2 style="color: #111827; margin-top: 0;">¡Hola ${name}!</h2>
@@ -156,13 +156,13 @@ export const sendPasswordChangedEmail = async (email, name) => {
 
   try {
     const mailOptions = {
-      from: `Gestión de Restaurantes <${config.smtp.fromEmail}>`,
+      from: `Perfume Shop <${config.smtp.fromEmail}>`,
       to: email,
       subject: 'Tu contraseña ha sido actualizada',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
           <div style="background-color: #10b981; padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">Gestión de Restaurantes</h1>
+            <h1 style="color: white; margin: 0;">Perfume Shop</h1>
           </div>
           <div style="padding: 30px; background-color: #ffffff;">
             <h2 style="color: #111827; margin-top: 0;">Contraseña Actualizada</h2>

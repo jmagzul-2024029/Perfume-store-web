@@ -217,7 +217,7 @@ const LogoLoop = memo(({
         ...rootStyle,
         '--logoloop-gap': `${gap}px`,
         '--logoloop-logoHeight': `${logoHeight}px`,
-        '--logoloop-fadeColorAuto': '#fff7ef',
+        '--logoloop-fadeColorAuto': '#fdf6f7',
         '--logoloop-fadeColor': fadeOutColor,
       }}
       onMouseEnter={() => setIsHovered(true)}

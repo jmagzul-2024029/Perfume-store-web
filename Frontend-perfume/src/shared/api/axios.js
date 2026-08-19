@@ -2,24 +2,10 @@ import axios from 'axios';
 import { useAuthStore } from '../../features/auth/store/useAuthStore';
 import { translateApiMessage } from '../utils/i18n';
 
-// ─── Microservices API Instances ────────────────────────────────────────────
+// ─── API Instance ────────────────────────────────────────────────────────────
+// Todo vive en AuthService: auth, usuarios y productos.
 const authApi = axios.create({
   baseURL: import.meta.env.VITE_AUTH_URL || 'http://localhost:3006/api/v1',
-  withCredentials: true,
-});
-
-const restaurantesApi = axios.create({
-  baseURL: import.meta.env.VITE_RESTAURANTES_URL || 'http://localhost:3007/api/v1',
-  withCredentials: true,
-});
-
-const pedidosApi = axios.create({
-  baseURL: import.meta.env.VITE_PEDIDOS_URL || 'http://localhost:3008/api/v1',
-  withCredentials: true,
-});
-
-const eventosApi = axios.create({
-  baseURL: import.meta.env.VITE_EVENTOS_URL || 'http://localhost:3009/api/v1',
   withCredentials: true,
 });
 
@@ -99,15 +85,12 @@ const setupInterceptors = (instance) => {
   return instance;
 };
 
-// Apply interceptors to all instances
+// Apply interceptors
 setupInterceptors(authApi);
-setupInterceptors(restaurantesApi);
-setupInterceptors(pedidosApi);
-setupInterceptors(eventosApi);
 
 // Default export = authApi for backward compatibility (stores that import `api` directly)
 const api = authApi;
 export default api;
 
-// Named exports for specific services
-export { authApi, restaurantesApi, pedidosApi, eventosApi };
+// Named export
+export { authApi };

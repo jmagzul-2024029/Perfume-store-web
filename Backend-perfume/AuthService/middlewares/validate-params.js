@@ -6,7 +6,7 @@ import { isValidUserId } from '../helpers/uuid-generator.js';
 import { ALLOWED_ROLES } from '../helpers/role-constants.js';
 
 /**
- * Valida un parÃ¡metro de ruta que debe ser UUID (restaurantes, menÃºs, pedidos, reservas, eventos, mesas, etc.)
+ * Valida un parámetro de ruta que debe ser UUID (productos, usuarios, etc.)
  */
 export const validateUuidParam = (paramName = 'id') => [
   param(paramName)

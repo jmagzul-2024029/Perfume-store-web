@@ -10,14 +10,14 @@ export const MenuFlipCard = ({ title, category, price, time, servings, image }) 
         <div className="content group-hover:-translate-y-1 transition-transform duration-300">
           <div className="back">
             <div className="back-content">
-              <div className="w-16 h-16 bg-[#b98c52] rounded flex items-center justify-center border-2 border-[#1c1712] shadow-[3px_3px_0px_#1c1712]">
-                 <span className="text-3xl font-black text-[#fffaf3]">$</span>
+              <div className="w-16 h-16 bg-[#b76e79] rounded flex items-center justify-center border-2 border-[#1c1712] shadow-[3px_3px_0px_#1c1712]">
+                 <span className="text-3xl font-black text-[#fdfbfa]">$</span>
               </div>
               <div className="text-center">
                 <p className="text-[#1c1712] font-black text-4xl uppercase">{price}</p>
                 <p className="text-zinc-500 text-[10px] font-black uppercase tracking-widest mt-1">Precio sugerido</p>
               </div>
-              <button className="px-6 py-3 bg-[#fffaf3] text-[#1c1712] border-2 border-[#1c1712] font-black rounded text-[10px] uppercase tracking-[0.2em] hover:bg-[#b98c52] hover:text-[#fffaf3] transition-colors shadow-[3px_3px_0px_#1c1712] active:translate-y-1 active:shadow-none">
+              <button className="px-6 py-3 bg-[#fdfbfa] text-[#1c1712] border-2 border-[#1c1712] font-black rounded text-[10px] uppercase tracking-[0.2em] hover:bg-[#b76e79] hover:text-[#fdfbfa] transition-colors shadow-[3px_3px_0px_#1c1712] active:translate-y-1 active:shadow-none">
                 Ver Detalles
               </button>
             </div>
@@ -94,7 +94,7 @@ const StyledWrapper = styled.div`
     border-radius: 0.5rem;
     overflow: hidden;
     border: 2px solid #1c1712;
-    background-color: #fffaf3;
+    background-color: #fdfbfa;
   }
 
   .back {
@@ -149,7 +149,7 @@ const StyledWrapper = styled.div`
   }
 
   .badge {
-    background-color: #b98c52;
+    background-color: #b76e79;
     padding: 6px 14px;
     border-radius: 4px;
     width: fit-content;
@@ -157,7 +157,7 @@ const StyledWrapper = styled.div`
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    color: #fffaf3;
+    color: #fdfbfa;
     border: 2px solid #1c1712;
     box-shadow: 2px 2px 0px #1c1712;
   }
@@ -165,7 +165,7 @@ const StyledWrapper = styled.div`
   .description {
     width: 100%;
     padding: 16px;
-    background-color: #fffaf3;
+    background-color: #fdfbfa;
     border-radius: 0.5rem;
     border: 2px solid #1c1712;
     box-shadow: 4px 4px 0px #1c1712;

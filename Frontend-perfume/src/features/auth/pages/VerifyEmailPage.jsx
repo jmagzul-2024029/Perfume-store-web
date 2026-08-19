@@ -35,11 +35,11 @@ export const VerifyEmailPage = () => {
   }, [token, verifyEmail]);
 
   return (
-    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden font-outfit bg-[#f7f1e7] text-zinc-900">
-      <DarkVeil baseColor="#f7f1e7" veilColor="#d7b77f" />
+    <div className="relative min-h-screen w-full flex items-center justify-center overflow-hidden font-outfit bg-[#f7eef0] text-zinc-900">
+      <DarkVeil baseColor="#f7eef0" veilColor="#d9a8ae" />
 
       <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="relative z-10 w-full max-w-md p-8">
-        <div className="bg-white/80 backdrop-blur-3xl p-12 rounded-[3rem] border border-[#dcc7a5]/70 shadow-[0_30px_100px_rgba(110,80,45,0.14)] text-center">
+        <div className="bg-white/80 backdrop-blur-3xl p-12 rounded-[3rem] border border-[#e3c3c8]/70 shadow-[0_30px_100px_rgba(110,80,45,0.14)] text-center">
             <div className="flex justify-center mb-8">
             <BrandLogo size="md" className="mx-auto" imageClassName="p-0" />
           </div>
@@ -47,8 +47,8 @@ export const VerifyEmailPage = () => {
           {status === 'loading' && (
             <div className="flex flex-col items-center">
               <div className="relative mb-8">
-                <div className="w-20 h-20 border-4 border-[#d7b77f]/25 border-t-[#b98c52] rounded-full animate-spin"></div>
-                <div className="absolute inset-0 flex items-center justify-center text-[#b98c52]">
+                <div className="w-20 h-20 border-4 border-[#d9a8ae]/25 border-t-[#b76e79] rounded-full animate-spin"></div>
+                <div className="absolute inset-0 flex items-center justify-center text-[#b76e79]">
                   <Mail className="w-8 h-8" />
                 </div>
               </div>
@@ -65,7 +65,7 @@ export const VerifyEmailPage = () => {
               <p className="text-zinc-600 font-bold mb-10 text-sm uppercase tracking-widest leading-relaxed">{message}</p>
               <Link
                 to="/login"
-                className="w-full py-5 rounded-2xl bg-gradient-to-r from-[#d7b77f] to-[#b98c52] text-white font-black uppercase tracking-[0.3em] text-[10px] hover:to-[#a97d45] shadow-2xl shadow-[rgba(185,140,82,0.18)] transition-all border border-[#d7b77f]/30"
+                className="w-full py-5 rounded-2xl bg-gradient-to-r from-[#d9a8ae] to-[#b76e79] text-white font-black uppercase tracking-[0.3em] text-[10px] hover:to-[#9c525d] shadow-2xl shadow-[rgba(185,140,82,0.18)] transition-all border border-[#d9a8ae]/30"
               >
                 Ingresar al Sistema
               </Link>
@@ -81,7 +81,7 @@ export const VerifyEmailPage = () => {
               <p className="text-zinc-600 font-bold mb-10 text-sm uppercase tracking-widest leading-relaxed">{message}</p>
               <Link
                 to="/login"
-                className="w-full py-5 rounded-2xl bg-[#fffaf3] text-zinc-900 font-black uppercase tracking-[0.3em] text-[10px] hover:bg-[#f4e8d3] border border-[#dcc7a5] transition-all"
+                className="w-full py-5 rounded-2xl bg-[#fdfbfa] text-zinc-900 font-black uppercase tracking-[0.3em] text-[10px] hover:bg-[#f3e0e2] border border-[#e3c3c8] transition-all"
               >
                 Volver al Portal
               </Link>

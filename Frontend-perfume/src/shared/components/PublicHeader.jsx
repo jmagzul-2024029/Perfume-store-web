@@ -9,7 +9,7 @@ export default function PublicHeader() {
     const isAdmin = isAuthenticated && ADMIN_ROLES.includes(role);
 
     return (
-        <header className="sticky top-0 z-40 border-b-2 border-[#1c1712]/10 bg-[#fffaf3]/95 backdrop-blur">
+        <header className="sticky top-0 z-40 border-b-2 border-[#1c1712]/10 bg-[#fdfbfa]/95 backdrop-blur">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:px-12 lg:px-20">
 
                 <Link
@@ -39,7 +39,7 @@ export default function PublicHeader() {
                 ) : (
                     <Link
                         to="/login"
-                        className="text-xs font-black uppercase tracking-wider text-[#1c1712] hover:text-[#b98c52]"
+                        className="text-xs font-black uppercase tracking-wider text-[#1c1712] hover:text-[#b76e79]"
                     >
                         Iniciar sesión
                     </Link>

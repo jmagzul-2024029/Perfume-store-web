@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { ArrowLeft, Lock, KeyRound, ShieldAlert } from 'lucide-react';
 import { Button } from '../../../shared/components/ui/Button';
 import { Input } from '../../../shared/components/ui/Input';
-import LogoBuenProvecho from '../../../assets/img/LogoBuenProvecho.png';
+import LogoPerfumes from '../../../assets/img/Logo-Perfume.jpg';
 
 export const ResetPasswordPage = () => {
   const [searchParams] = useSearchParams();
@@ -35,10 +35,10 @@ export const ResetPasswordPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fffaf3] flex items-center justify-center p-6 overflow-hidden relative font-outfit">
+    <div className="min-h-screen bg-[#fdfbfa] flex items-center justify-center p-6 overflow-hidden relative font-outfit">
       {/* Elementos Brutalistas */}
       <div className="absolute top-[-5%] left-[-5%] w-64 h-64 bg-[#1c1712] opacity-5 border-4 border-[#1c1712] -z-0 rotate-12" />
-      <div className="absolute bottom-[-5%] right-[-5%] w-80 h-80 bg-[#b98c52] opacity-10 border-8 border-[#1c1712] -z-0 -rotate-6" />
+      <div className="absolute bottom-[-5%] right-[-5%] w-80 h-80 bg-[#b76e79] opacity-10 border-8 border-[#1c1712] -z-0 -rotate-6" />
 
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -50,11 +50,11 @@ export const ResetPasswordPage = () => {
             <ShieldAlert size={32} className="text-white" />
           </div>
 
-          <img src={LogoBuenProvecho} alt="Logo" className="h-24 mx-auto mb-10" />
+          <img src={LogoPerfumes} alt="Logo" className="h-24 mx-auto mb-10" />
 
           <div className="mb-10">
             <h1 className="text-3xl font-black text-[#1c1712] uppercase tracking-tighter leading-none mb-4">
-              Reset <span className="text-[#b98c52]">Password</span>
+              Reset <span className="text-[#b76e79]">Password</span>
             </h1>
             <p className="text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500">
               Define tu nueva llave de acceso para restaurar la seguridad.
@@ -86,8 +86,8 @@ export const ResetPasswordPage = () => {
           </form>
 
           <div className="mt-12 pt-8 border-t-4 border-[#1c1712]">
-            <Link to="/login" className="inline-flex items-center gap-3 text-[11px] font-black uppercase tracking-widest text-[#1c1712] hover:text-[#b98c52] transition-colors">
-              <ArrowLeft size={18} className="text-[#b98c52]" />
+            <Link to="/login" className="inline-flex items-center gap-3 text-[11px] font-black uppercase tracking-widest text-[#1c1712] hover:text-[#b76e79] transition-colors">
+              <ArrowLeft size={18} className="text-[#b76e79]" />
               Cancelar Operación
             </Link>
           </div>

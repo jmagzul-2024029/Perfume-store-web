@@ -117,12 +117,12 @@ const LoginPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#fffaf3] flex items-center justify-center px-4 py-8 sm:px-6 relative overflow-hidden font-outfit">
+    <main className="min-h-screen bg-[#fdfbfa] flex items-center justify-center px-4 py-8 sm:px-6 relative overflow-hidden font-outfit">
 
       {/* Decoración de fondo */}
-      <div className="absolute -top-24 -right-24 w-64 h-64 sm:w-80 sm:h-80 bg-[#b98c52] opacity-5 border-4 border-[#1c1712] rotate-12 pointer-events-none" />
+      <div className="absolute -top-24 -right-24 w-64 h-64 sm:w-80 sm:h-80 bg-[#b76e79] opacity-5 border-4 border-[#1c1712] rotate-12 pointer-events-none" />
 
-      <div className="absolute -bottom-32 -left-32 w-72 h-72 bg-[#b98c52] opacity-5 border-4 border-[#1c1712] -rotate-12 pointer-events-none" />
+      <div className="absolute -bottom-32 -left-32 w-72 h-72 bg-[#b76e79] opacity-5 border-4 border-[#1c1712] -rotate-12 pointer-events-none" />
 
       {/* Contenedor principal */}
       <div className="relative z-10 w-full max-w-4xl grid grid-cols-1 lg:grid-cols-12 bg-white border-2 sm:border-4 border-[#1c1712] shadow-[8px_8px_0px_#1c1712] sm:shadow-[14px_14px_0px_#1c1712] overflow-hidden">
@@ -154,13 +154,13 @@ const LoginPage = () => {
               className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 object-cover rounded-full mx-auto mb-5 sm:mb-7 border-2 border-[#1c1712]"
             />
 
-            <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-[#b98c52] mb-3">
+            <p className="text-[10px] sm:text-xs font-black uppercase tracking-[0.3em] text-[#b76e79] mb-3">
               L'ESSENCE DE FRANCE
             </p>
 
             <h1 className="text-2xl sm:text-3xl font-black text-[#1c1712] uppercase tracking-tighter leading-none mb-3">
               Acceso{' '}
-              <span className="text-[#b98c52]">
+              <span className="text-[#b76e79]">
                 Administrativo
               </span>
             </h1>
@@ -222,7 +222,7 @@ const LoginPage = () => {
                     (previous) => !previous
                   )
                 }
-                className="absolute right-3 sm:right-4 top-10 text-[#1c1712] hover:text-[#b98c52] transition-colors"
+                className="absolute right-3 sm:right-4 top-10 text-[#1c1712] hover:text-[#b76e79] transition-colors"
               >
                 {showPassword ? (
                   <EyeOff size={18} />
@@ -237,7 +237,7 @@ const LoginPage = () => {
             <div className="flex justify-end">
               <Link
                 to="/forgot-password"
-                className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-[#b98c52] hover:underline"
+                className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-[#b76e79] hover:underline"
               >
                 ¿Olvidaste tu contraseña?
               </Link>
@@ -265,7 +265,7 @@ const LoginPage = () => {
             <div className="flex items-center justify-center gap-2 mb-2">
               <Sparkles
                 size={14}
-                className="text-[#b98c52]"
+                className="text-[#b76e79]"
               />
 
               <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-zinc-400">
@@ -274,7 +274,7 @@ const LoginPage = () => {
 
               <Sparkles
                 size={14}
-                className="text-[#b98c52]"
+                className="text-[#b76e79]"
               />
             </div>
 
@@ -334,14 +334,14 @@ const LoginPage = () => {
           {/* Texto sobre imagen */}
           <div className="absolute left-10 bottom-20 z-20 max-w-md">
 
-            <p className="text-xs font-black uppercase tracking-[0.35em] text-[#caa56d] mb-4">
+            <p className="text-xs font-black uppercase tracking-[0.35em] text-[#b76e79] mb-4">
               L'ESSENCE DE FRANCE
             </p>
 
             <h2 className="text-3xl xl:text-4xl font-black uppercase tracking-tighter text-white leading-none">
               Perfumes que
               <br /> {/* salto */}
-              <span className="text-[#caa56d]">
+              <span className="text-[#b76e79]">
                 dejan huella.
               </span>
             </h2>
@@ -361,7 +361,7 @@ const LoginPage = () => {
                   transition-all
                   duration-500
                   ${index === currentImage
-                    ? 'w-12 bg-[#b98c52]'
+                    ? 'w-12 bg-[#b76e79]'
                     : 'w-3 bg-white/30'
                   }
                 `}

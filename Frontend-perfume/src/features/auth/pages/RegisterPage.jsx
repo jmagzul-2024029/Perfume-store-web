@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 import { User, Mail, Lock, Phone, ArrowRight, ShieldCheck, UserPlus } from 'lucide-react';
 import { Button } from '../../../shared/components/ui/Button';
 import { Input } from '../../../shared/components/ui/Input';
-import LogoBuenProvecho from '../../../assets/img/LogoBuenProvecho.png';
+import LogoPerfumes from '../../../assets/img/Logo-Perfume.jpg';
 
 export const RegisterPage = () => {
   const [formData, setFormData] = useState({
@@ -64,9 +64,9 @@ export const RegisterPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#fffaf3] flex items-center justify-center p-6 overflow-x-hidden relative font-outfit">
+    <div className="min-h-screen bg-[#fdfbfa] flex items-center justify-center p-6 overflow-x-hidden relative font-outfit">
       {/* Fondo decorativo sutil */}
-      <div className="absolute top-0 left-0 w-full h-24 bg-[#1c1712] border-b-4 border-[#b98c52] -z-0" />
+      <div className="absolute top-0 left-0 w-full h-24 bg-[#1c1712] border-b-4 border-[#b76e79] -z-0" />
 
       <div className="relative z-10 w-full max-w-3xl">
         <motion.div
@@ -75,9 +75,9 @@ export const RegisterPage = () => {
         >
           <div className="bg-white border-4 border-[#1c1712] p-8 md:p-12 shadow-[12px_12px_0px_#1c1712] relative">
             <div className="text-center mb-12">
-              <img src={LogoBuenProvecho} alt="Logo" className="h-24 mb-6 mx-auto" />
+              <img src={LogoPerfumes} alt="Logo" className="h-24 mb-6 mx-auto" />
               <h1 className="text-3xl font-black text-[#1c1712] uppercase tracking-tighter leading-none mb-2">
-                Nueva <span className="text-[#b98c52]">Identidad</span>
+                Nueva <span className="text-[#b76e79]">Identidad</span>
               </h1>
               <p className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">
                 Únete a la elite de la gestión gastronómica.
@@ -103,7 +103,7 @@ export const RegisterPage = () => {
                     type="file"
                     name="profilePicture"
                     onChange={handleChange}
-                    className="w-full text-[9px] font-black file:mr-4 file:py-2 file:px-4 file:rounded-none file:border-2 file:border-[#1c1712] file:bg-[#fffaf3] file:text-[#1c1712] file:shadow-[3px_3px_0px_#1c1712] file:cursor-pointer"
+                    className="w-full text-[9px] font-black file:mr-4 file:py-2 file:px-4 file:rounded-none file:border-2 file:border-[#1c1712] file:bg-[#fdfbfa] file:text-[#1c1712] file:shadow-[3px_3px_0px_#1c1712] file:cursor-pointer"
                   />
                 </div>
               </div>
@@ -118,7 +118,7 @@ export const RegisterPage = () => {
                   Crear Cuenta <ArrowRight size={18} className="ml-2" />
                 </Button>
                 <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400">
-                  ¿Ya tienes cuenta? <Link to="/login" className="text-[#b98c52] border-b border-[#b98c52] ml-2">Iniciar Sesión</Link>
+                  ¿Ya tienes cuenta? <Link to="/login" className="text-[#b76e79] border-b border-[#b76e79] ml-2">Iniciar Sesión</Link>
                 </p>
               </div>
             </form>

@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 
 import ProtectedRoute from './ProtectedRoute';
 import PublicLayout from '../layouts/PublicLayout';
+import DashboardLayout from '../layouts/DashboardLayout';
 
 import LoginPage from '../../features/auth/pages/LoginPage';
 import ProductsPage from '../../features/products/pages/ProductsPage';
@@ -38,12 +39,17 @@ export const router = createBrowserRouter([
     ),
     children: [
       {
-        path: '/dashboard',
-        element: <AdminProductsPage />,
-      },
-      {
-        path: '/dashboard/perfumes',
-        element: <AdminProductsPage />,
+        element: <DashboardLayout />,
+        children: [
+          {
+            path: '/dashboard',
+            element: <AdminProductsPage />,
+          },
+          {
+            path: '/dashboard/perfumes',
+            element: <AdminProductsPage />,
+          },
+        ],
       },
     ],
   },

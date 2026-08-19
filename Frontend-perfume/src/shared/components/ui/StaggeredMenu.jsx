@@ -3,7 +3,7 @@ import { gsap } from 'gsap';
 
 export const StaggeredMenu = ({
   position = 'right',
-  colors = ['#F4E7D1', '#E2C089', '#C79C54'],
+  colors = ['#F0DDE1', '#CF919C', '#B76E79'],
   items = [],
   socialItems = [],
   displaySocials = true,
@@ -455,7 +455,7 @@ export const StaggeredMenu = ({
                       data-index={idx + 1}
                     >
                       <span className="sm-panel-itemLabel inline-flex items-center gap-4 [transform-origin:50%_100%] will-change-transform">
-                        {it.icon && <it.icon className="w-8 h-8 md:w-10 md:h-10 text-[#b98c52]" />}
+                        {it.icon && <it.icon className="w-8 h-8 md:w-10 md:h-10 text-[#b76e79]" />}
                         {it.label}
                       </span>
                     </a>
