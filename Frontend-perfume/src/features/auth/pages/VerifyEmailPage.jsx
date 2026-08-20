@@ -65,7 +65,7 @@ export const VerifyEmailPage = () => {
               <p className="text-zinc-600 font-bold mb-10 text-sm uppercase tracking-widest leading-relaxed">{message}</p>
               <Link
                 to="/login"
-                className="w-full py-5 rounded-2xl bg-gradient-to-r from-[#d9a8ae] to-[#b76e79] text-white font-black uppercase tracking-[0.3em] text-[10px] hover:to-[#9c525d] shadow-2xl shadow-[rgba(185,140,82,0.18)] transition-all border border-[#d9a8ae]/30"
+                className="w-full py-5 rounded-2xl bg-linear-to-r from-[#d9a8ae] to-[#b76e79] text-white font-black uppercase tracking-[0.3em] text-[10px] hover:to-[#9c525d] shadow-2xl shadow-[rgba(185,140,82,0.18)] transition-all border border-[#d9a8ae]/30"
               >
                 Ingresar al Sistema
               </Link>

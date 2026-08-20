@@ -329,7 +329,7 @@ const LoginPage = () => {
           </AnimatePresence>
 
           {/* Degradado */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1c1712] via-transparent to-transparent opacity-60 pointer-events-none" />
+          <div className="absolute inset-0 bg-linear-to-t from-[#1c1712] via-transparent to-transparent opacity-60 pointer-events-none" />
 
           {/* Texto sobre imagen */}
           <div className="absolute left-10 bottom-20 z-20 max-w-md">

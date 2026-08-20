@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, ArrowLeft, CheckCircle2, ShieldQuestion } from 'lucide-react';
 import { Button } from '../../../shared/components/ui/Button';
 import { Input } from '../../../shared/components/ui/Input';
-import LogoPerfumes from '../../../assets/img/Logo-Perfume.jpg';
 
 export const ForgotPasswordPage = () => {
   const [email, setEmail] = useState('');
@@ -25,8 +24,8 @@ export const ForgotPasswordPage = () => {
   return (
     <div className="min-h-screen bg-[#fdfbfa] flex items-center justify-center p-6 overflow-hidden relative font-outfit">
       {/* Elementos Brutalistas */}
-      <div className="absolute top-0 right-0 w-64 h-64 bg-[#b76e79] opacity-10 border-b-8 border-l-8 border-[#1c1712] -z-0" />
-      <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#1c1712] opacity-5 border-t-4 border-r-4 border-[#1c1712] -z-0" />
+      <div className="absolute top-0 right-0 w-64 h-64 bg-[#b76e79] opacity-10 border-b-8 border-l-8 border-[#1c1712] z-0" />
+      <div className="absolute bottom-0 left-0 w-48 h-48 bg-[#1c1712] opacity-5 border-t-4 border-r-4 border-[#1c1712] z-0" />
 
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
@@ -34,7 +33,6 @@ export const ForgotPasswordPage = () => {
         className="relative z-10 w-full max-w-md"
       >
         <div className="bg-white border-4 border-[#1c1712] p-8 md:p-12 shadow-[16px_16px_0px_#1c1712] text-center">
-          <img src={LogoPerfumes} alt="Logo" className="h-24 mx-auto mb-10" />
 
           <AnimatePresence mode="wait">
             {!isSent ? (
@@ -54,7 +52,7 @@ export const ForgotPasswordPage = () => {
                     label="Correo Electrónico"
                     icon={Mail}
                     type="email"
-                    placeholder="admin@buenprovecho.com"
+                    placeholder="admin@gmail.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
@@ -71,7 +69,7 @@ export const ForgotPasswordPage = () => {
                 </div>
                 <h1 className="text-4xl font-black text-[#1c1712] uppercase tracking-tighter leading-none mb-6">¡Despachado!</h1>
                 <p className="text-sm font-black text-[#1c1712] uppercase tracking-wider leading-relaxed mb-8">
-                  Revisa tu bandeja de entrada en:<br/>
+                  Revisa tu bandeja de entrada en:<br />
                   <span className="text-[#b76e79] text-lg">{email}</span>
                 </p>
                 <div className="bg-[#fdfbfa] border-2 border-dashed border-[#1c1712] p-4 text-[10px] font-black uppercase tracking-widest text-zinc-500 mb-8">

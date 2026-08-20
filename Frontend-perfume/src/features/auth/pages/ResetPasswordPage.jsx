@@ -37,8 +37,8 @@ export const ResetPasswordPage = () => {
   return (
     <div className="min-h-screen bg-[#fdfbfa] flex items-center justify-center p-6 overflow-hidden relative font-outfit">
       {/* Elementos Brutalistas */}
-      <div className="absolute top-[-5%] left-[-5%] w-64 h-64 bg-[#1c1712] opacity-5 border-4 border-[#1c1712] -z-0 rotate-12" />
-      <div className="absolute bottom-[-5%] right-[-5%] w-80 h-80 bg-[#b76e79] opacity-10 border-8 border-[#1c1712] -z-0 -rotate-6" />
+      <div className="absolute top-[-5%] left-[-5%] w-64 h-64 bg-[#1c1712] opacity-5 border-4 border-[#1c1712] z-0 rotate-12" />
+      <div className="absolute bottom-[-5%] right-[-5%] w-80 h-80 bg-[#b76e79] opacity-10 border-8 border-[#1c1712] z-0 -rotate-6" />
 
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
