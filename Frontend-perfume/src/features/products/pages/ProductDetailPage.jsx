@@ -68,8 +68,7 @@ export default function ProductDetailPage() {
 
     const whatsappNumber = import.meta.env.VITE_WHATSAPP_NUMBER || '50258620489';
     const whatsappMessage = encodeURIComponent(
-        `Hola, me interesa el perfume "${product.name}" (Marca ${product.brand}) - Q${Number(product.price).toFixed(2)}. 
-        ¿Está disponible?`
+        `Hola, me interesa el perfume "${product.name}" (Marca ${product.brand}) - Q${Number(product.price).toFixed(2)}. ¿Está disponible?`
     );
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${whatsappMessage}`;
 

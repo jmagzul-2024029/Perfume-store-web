@@ -13,10 +13,30 @@ export const DashboardLayout = () => {
 
     return (
         <div className="min-h-screen bg-[#fdfbfa]">
-            <header className="sticky top-0 z-40 flex items-center justify-between border-b-2 border-[#1c1712]/10 bg-[#fdfbfa]/95 px-6 py-4 backdrop-blur md:px-12">
-                <Link to="/dashboard" className="text-sm font-black uppercase tracking-[0.3em] text-[#1c1712]">
-                    Perfume Shop <span className="text-[#b76e79]">Admin</span>
-                </Link>
+            <header className="sticky top-0 z-40 flex items-center justify-between gap-6 border-b-2 border-[#1c1712]/10 bg-[#fdfbfa]/95 px-6 py-4 backdrop-blur md:px-12">
+                <div className="flex items-center gap-8">
+                    <Link to="/dashboard" className="text-sm font-black uppercase tracking-[0.3em] text-[#1c1712]">
+                        L'ESSENCE DE FRANCE <span className="text-[#000000]">Admin</span>
+                    </Link>
+
+                    <nav className="hidden items-center gap-6 md:flex">
+                        <Link
+                            to="/dashboard/perfumes"
+                            className="text-xs font-black uppercase tracking-widest text-[#1c1712] transition hover:text-[#b76e79]"
+                        >
+                            Perfumes
+                        </Link>
+
+                        {role === 'SUPER_ADMIN_ROLE' && (
+                            <Link
+                                to="/dashboard/admins"
+                                className="text-xs font-black uppercase tracking-widest text-[#1c1712] transition hover:text-[#b76e79]"
+                            >
+                                Administradores
+                            </Link>
+                        )}
+                    </nav>
+                </div>
 
                 <div className="flex items-center gap-4">
                     <div className="hidden text-right sm:block">
