@@ -153,6 +153,30 @@ export const useAuthStore = create(
         }
       },
 
+      getManagers: async () => {
+        set({ isLoading: true });
+        try {
+          const response = await api.get('/auth/managers');
+          set({ isLoading: false });
+          return { success: true, data: response.data.data };
+        } catch (error) {
+          set({ isLoading: false });
+          return { success: false, error: error.response?.data?.message || 'Error al obtener administradores' };
+        }
+      },
+
+      deleteManager: async (managerId) => {
+        set({ isLoading: true });
+        try {
+          const response = await api.delete(`/auth/managers/${managerId}`);
+          set({ isLoading: false });
+          return { success: true, message: response.data.message };
+        } catch (error) {
+          set({ isLoading: false });
+          return { success: false, error: error.response?.data?.message || 'Error al eliminar administrador' };
+        }
+      },
+
       logout: () => {
         set({ user: null, token: null, role: null, isAuthenticated: false });
       },
