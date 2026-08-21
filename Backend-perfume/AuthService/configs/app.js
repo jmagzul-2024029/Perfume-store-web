@@ -14,6 +14,7 @@ import '../src/products/product.model.js';
 
 import { seedRoles } from '../helpers/role-seed.js';
 import { seedAdminUser } from '../helpers/admin-seed.js';
+import { verifyEmailTransporter } from '../helpers/email-service.js';
 
 import { requestLimit } from '../middlewares/request-limit.js';
 import { corsOptions } from './cors-configuration.js';
@@ -109,6 +110,10 @@ export const initServer = async () => {
 
     await seedRoles();
     await seedAdminUser();
+
+    // No bloquea el arranque del server, pero deja en consola si el correo
+    // de verificación va a poder enviarse o no.
+    verifyEmailTransporter();
 
     middlewares(app);
 

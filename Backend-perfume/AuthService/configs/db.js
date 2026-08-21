@@ -34,10 +34,15 @@ export const dbConnection = async () => {
     await sequelize.authenticate();
     console.log('PostgreSQL | Conectado a PostgreSQL');
 
-    if (process.env.NODE_ENV === 'development') {
+    // Antes esto solo corria si NODE_ENV === 'development', lo que significa
+    // que en un deploy real (NODE_ENV=production) las tablas NUNCA se creaban
+    // y el backend fallaba en el primer query. Se sincroniza siempre salvo
+    // que se desactive explicitamente con DB_SYNC=false (por ejemplo si en
+    // el futuro se usan migraciones reales con sequelize-cli).
+    if (process.env.DB_SYNC !== 'false') {
       const syncLogging = process.env.DB_SQL_LOGGING === 'true' ? console.log : false;
       await sequelize.sync({ force: false, logging: syncLogging });
-      console.log('PostgreSQL | Esquema sincronizado en desarrollo');
+      console.log('PostgreSQL | Esquema sincronizado');
     }
   } catch (error) {
     console.error(`Error al conectar PostgreSQL: ${error}`);
