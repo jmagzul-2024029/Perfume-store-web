@@ -86,7 +86,7 @@ export const sendVerificationEmail = async (email, name, verificationToken) => {
           </div>
           <div style="padding: 30px; background-color: #ffffff;">
             <h2 style="color: #111827; margin-top: 0;">¡Hola ${name}!</h2>
-            <p style="color: #4b5563; font-size: 16px; line-height: 1.5;">Gracias por registrarte. Por favor verifica tu cuenta haciendo clic en el siguiente botón:</p>
+            <p style="color: #4b5563; font-size: 16px; line-height: 1.5;">Gracias por registrarte. Por favor verifica tu cuenta haciendo clic en el siguiente botón: (Uso único)</p>
             <div style="text-align: center; margin: 30px 0;">
               <a href='${verificationUrl}' style='background-color: #b76e79; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;'>
                   Verificar mi cuenta
@@ -97,6 +97,7 @@ export const sendVerificationEmail = async (email, name, verificationToken) => {
             <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;" />
             <p style="color: #9ca3af; font-size: 12px; margin: 0;">Este enlace expira en 24 horas.</p>
             <p style="color: #9ca3af; font-size: 12px; margin: 5px 0 0 0;">Si no solicitaste esta cuenta, ignora este correo.</p>
+            <p style="color: #9ca3af; font-size: 12px; margin: 5px 0 0 0;">Si ha pasado mucho y no pudiste validar tu cuenta, y tampoco te deja ingresar al sistema, comunícate con el administrador.</p>
           </div>
         </div>
       `,
