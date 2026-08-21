@@ -94,7 +94,9 @@ export const createManager = asyncHandler(async (req, res) => {
     const result = await registerUserHelper(userData);
     return res.status(201).json({
       ...result,
-      message: 'Administrador creado exitosamente.',
+      message: result.emailSent
+        ? 'Administrador creado exitosamente. Se envió un correo de verificación.'
+        : 'Administrador creado, pero el correo de verificación no pudo enviarse. Revisa la configuración SMTP o usa "Reenviar verificación".',
     });
   } catch (error) {
     console.error('Error in createManager controller:', error);

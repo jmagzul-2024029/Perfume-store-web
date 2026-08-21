@@ -127,13 +127,22 @@ export const registerUserHelper = async (userData) => {
       tokenExpiry
     );
 
-    // Enviar email de verificación en background para no bloquear la respuesta
-    // Si falla, se registra en consola pero no afecta la respuesta
-    Promise.resolve()
-      .then(() => sendVerificationEmail(email, name, verificationToken))
-      .catch((err) =>
-        console.error('Async email send (verification) failed:', err)
+    // Intentamos enviar el correo de verificación ANTES de responder.
+    // Antes esto corría en background con un catch silencioso: si el SMTP
+    // fallaba (credenciales inválidas, Gmail bloqueando, etc.) la cuenta
+    // quedaba creada pero nadie se enteraba de que el correo nunca salió,
+    // y el usuario/admin creado quedaba sin poder verificarse.
+    let emailSent = true;
+    let emailError = null;
+    try {
+      await sendVerificationEmail(email, name, verificationToken);
+    } catch (err) {
+      emailSent = false;
+      emailError = err.message;
+      console.error(
+        `❌ No se pudo enviar el correo de verificación a ${email}: ${err.message}`
       );
+    }
 
     // Note: No JWT token returned in register (aligned with .NET RegisterResponseDto)
     // JWT will be generated only at login
@@ -142,9 +151,12 @@ export const registerUserHelper = async (userData) => {
     return {
       success: true,
       user: buildUserResponse(newUser),
-      message:
-        'Usuario registrado exitosamente. Por favor, verifica tu email para activar la cuenta.',
+      message: emailSent
+        ? 'Usuario registrado exitosamente. Por favor, verifica tu email para activar la cuenta.'
+        : 'Usuario registrado, pero no se pudo enviar el correo de verificación. Usa la opción de reenviar verificación o revisa la configuración SMTP.',
       emailVerificationRequired: true,
+      emailSent,
+      ...(emailError ? { emailError } : {}),
     };
   } catch (error) {
     console.error('Error en registro:', error);

@@ -30,6 +30,42 @@ const createTransporter = () => {
 
 const transporter = createTransporter();
 
+/**
+ * Verifica la conexión SMTP al arrancar el servidor.
+ * Antes, si las credenciales eran inválidas o Gmail rechazaba la conexión,
+ * el error solo se veía cuando alguien intentaba registrarse (y quedaba
+ * "silenciado" dentro de un catch en background). Con esto se ve de una
+ * vez en consola al iniciar `npm run dev` / `npm start`.
+ */
+export const verifyEmailTransporter = async () => {
+  if (!transporter) {
+    console.warn(
+      '⚠️  SMTP no configurado (revisa SMTP_USERNAME/SMTP_PASSWORD en .env). Los correos de verificación NO se enviarán.'
+    );
+    return false;
+  }
+
+  try {
+    await transporter.verify();
+    console.log(`✅ SMTP conectado correctamente (${config.smtp.username})`);
+    return true;
+  } catch (error) {
+    console.error(
+      '❌ No se pudo conectar al servidor SMTP. Los correos de verificación NO se enviarán.'
+    );
+    console.error(`   Motivo: ${error.message}`);
+    if (error.responseCode === 535 || /invalid login|username and password/i.test(error.message || '')) {
+      console.error(
+        '   → Esto normalmente significa que la contraseña de aplicación de Gmail es incorrecta, expiró o fue revocada.'
+      );
+      console.error(
+        '   → Genera una nueva en https://myaccount.google.com/apppasswords y actualiza SMTP_PASSWORD en el .env.'
+      );
+    }
+    return false;
+  }
+};
+
 export const sendVerificationEmail = async (email, name, verificationToken) => {
   if (!transporter) {
     throw new Error('SMTP transporter not configured');
@@ -40,24 +76,24 @@ export const sendVerificationEmail = async (email, name, verificationToken) => {
     const verificationUrl = `${frontendUrl}/verify-email?token=${verificationToken}`;
 
     const mailOptions = {
-      from: `Perfume Shop <${config.smtp.fromEmail}>`,
+      from: `${config.smtp.fromName || "L'ESSENCE DE FRANCE"} <${config.smtp.fromEmail}>`,
       to: email,
-      subject: 'Verifica tu cuenta de Perfume Shop',
+      subject: "Verifica tu cuenta de L'ESSENCE DE FRANCE",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
-          <div style="background-color: #4f46e5; padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">Perfume Shop</h1>
+          <div style="background-color: #b76e79; padding: 20px; text-align: center;">
+            <h1 style="color: white; margin: 0;">L'ESSENCE DE FRANCE</h1>
           </div>
           <div style="padding: 30px; background-color: #ffffff;">
             <h2 style="color: #111827; margin-top: 0;">¡Hola ${name}!</h2>
             <p style="color: #4b5563; font-size: 16px; line-height: 1.5;">Gracias por registrarte. Por favor verifica tu cuenta haciendo clic en el siguiente botón:</p>
             <div style="text-align: center; margin: 30px 0;">
-              <a href='${verificationUrl}' style='background-color: #4f46e5; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;'>
+              <a href='${verificationUrl}' style='background-color: #b76e79; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;'>
                   Verificar mi cuenta
               </a>
             </div>
             <p style="color: #6b7280; font-size: 14px;">Si el botón no funciona, copia y pega este enlace en tu navegador:</p>
-            <p style="color: #4f46e5; font-size: 14px; word-break: break-all;">${verificationUrl}</p>
+            <p style="color: #b76e79; font-size: 14px; word-break: break-all;">${verificationUrl}</p>
             <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;" />
             <p style="color: #9ca3af; font-size: 12px; margin: 0;">Este enlace expira en 24 horas.</p>
             <p style="color: #9ca3af; font-size: 12px; margin: 5px 0 0 0;">Si no solicitaste esta cuenta, ignora este correo.</p>
@@ -83,24 +119,24 @@ export const sendPasswordResetEmail = async (email, name, resetToken) => {
     const resetUrl = `${frontendUrl}/reset-password?token=${resetToken}`;
 
     const mailOptions = {
-      from: `Perfume Shop <${config.smtp.fromEmail}>`,
+      from: `${config.smtp.fromName || "L'ESSENCE DE FRANCE"} <${config.smtp.fromEmail}>`,
       to: email,
       subject: 'Recuperación de contraseña',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
-          <div style="background-color: #4f46e5; padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">Perfume Shop</h1>
+          <div style="background-color: #b76e79; padding: 20px; text-align: center;">
+            <h1 style="color: white; margin: 0;">L'ESSENCE DE FRANCE</h1>
           </div>
           <div style="padding: 30px; background-color: #ffffff;">
             <h2 style="color: #111827; margin-top: 0;">Hola ${name},</h2>
             <p style="color: #4b5563; font-size: 16px; line-height: 1.5;">Hemos recibido una solicitud para restablecer tu contraseña. Haz clic en el botón para crear una nueva:</p>
             <div style="text-align: center; margin: 30px 0;">
-              <a href='${resetUrl}' style='background-color: #4f46e5; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;'>
+              <a href='${resetUrl}' style='background-color: #b76e79; color: white; padding: 12px 24px; text-decoration: none; border-radius: 6px; font-weight: bold; display: inline-block;'>
                   Restablecer Contraseña
               </a>
             </div>
             <p style="color: #6b7280; font-size: 14px;">O copia este enlace en tu navegador:</p>
-            <p style="color: #4f46e5; font-size: 14px; word-break: break-all;">${resetUrl}</p>
+            <p style="color: #b76e79; font-size: 14px; word-break: break-all;">${resetUrl}</p>
             <hr style="border: none; border-top: 1px solid #e5e7eb; margin: 30px 0;" />
             <p style="color: #9ca3af; font-size: 12px; margin: 0;">Este enlace expira en 1 hora.</p>
             <p style="color: #9ca3af; font-size: 12px; margin: 5px 0 0 0;">Si no solicitaste este cambio, ignora este correo y tu cuenta seguirá segura.</p>
@@ -123,13 +159,13 @@ export const sendWelcomeEmail = async (email, name) => {
 
   try {
     const mailOptions = {
-      from: `Perfume Shop <${config.smtp.fromEmail}>`,
+      from: `${config.smtp.fromName || "L'ESSENCE DE FRANCE"} <${config.smtp.fromEmail}>`,
       to: email,
-      subject: '¡Bienvenido a Perfume Shop!',
+      subject: "¡Bienvenido a L'ESSENCE DE FRANCE!",
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
-          <div style="background-color: #4f46e5; padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">Perfume Shop</h1>
+          <div style="background-color: #b76e79; padding: 20px; text-align: center;">
+            <h1 style="color: white; margin: 0;">L'ESSENCE DE FRANCE</h1>
           </div>
           <div style="padding: 30px; background-color: #ffffff;">
             <h2 style="color: #111827; margin-top: 0;">¡Hola ${name}!</h2>
@@ -156,13 +192,13 @@ export const sendPasswordChangedEmail = async (email, name) => {
 
   try {
     const mailOptions = {
-      from: `Perfume Shop <${config.smtp.fromEmail}>`,
+      from: `${config.smtp.fromName || "L'ESSENCE DE FRANCE"} <${config.smtp.fromEmail}>`,
       to: email,
       subject: 'Tu contraseña ha sido actualizada',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden;">
           <div style="background-color: #10b981; padding: 20px; text-align: center;">
-            <h1 style="color: white; margin: 0;">Perfume Shop</h1>
+            <h1 style="color: white; margin: 0;">L'ESSENCE DE FRANCE</h1>
           </div>
           <div style="padding: 30px; background-color: #ffffff;">
             <h2 style="color: #111827; margin-top: 0;">Contraseña Actualizada</h2>

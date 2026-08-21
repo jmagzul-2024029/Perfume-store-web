@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "smoke-refresh": "node ./scripts/smoke-refresh.js"
+    "smoke-refresh": "node ./scripts/smoke-refresh.js",
+    "inspect-db": "node ./scripts/inspect-legacy-tables.js"
   },
   "dependencies": {
     "argon2": "^0.44.0",
