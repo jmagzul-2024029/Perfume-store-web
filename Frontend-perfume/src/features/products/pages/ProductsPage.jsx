@@ -86,13 +86,13 @@ export default function ProductsPage() {
     };
 
     return (
-        <main className="min-h-screen bg-[#fdfbfa] text-[#1c1712]">
+        <main className="min-h-screen bg-[#fdfbfa] text-[#1c1712]"> {/* Color de fondo */}
 
             {/* HERO */}
             <section className="px-6 py-20 md:px-12 lg:px-20">
                 <div className="mx-auto max-w-7xl">
 
-                    <span className="text-sm font-black uppercase tracking-[0.35em] text-[#b76e79]">
+                    <span className="text-sm font-black uppercase tracking-[0.35em] text-[#890418]">
                         L'ESSENCE DE FRANCE
                     </span>
 
