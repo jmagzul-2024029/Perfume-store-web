@@ -57,7 +57,7 @@ export const ResetPasswordPage = () => {
               Reset <span className="text-[#b76e79]">Password</span>
             </h1>
             <p className="text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500">
-              Define tu nueva llave de acceso para restaurar la seguridad.
+              Define tu nueva contraseña y confirma para poder realizar el restablecimiento.
             </p>
           </div>
 

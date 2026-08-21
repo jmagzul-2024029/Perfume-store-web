@@ -44,7 +44,7 @@ export const ForgotPasswordPage = () => {
                   Recuperar <span className="text-[#b76e79]">Acceso</span>
                 </h1>
                 <p className="text-[11px] font-black uppercase tracking-[0.3em] text-zinc-500 mb-10">
-                  Te enviaremos el código de restauración a tu canal de comunicación.
+                  Te enviaremos el código de restauración a tu email.
                 </p>
 
                 <form className="space-y-8 text-left" onSubmit={handleSubmit}>
