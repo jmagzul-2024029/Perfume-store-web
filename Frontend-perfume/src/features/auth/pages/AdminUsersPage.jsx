@@ -42,7 +42,17 @@ export const AdminUsersPage = () => {
         e.preventDefault();
         const result = await createManager(form);
         if (result.success) {
-            toast.success(result.message || 'Administrador creado exitosamente');
+            if (result.emailSent === false) {
+                // El admin se creó, pero el correo de verificación no salió:
+                // se lo hacemos notar explícitamente en vez de un toast de éxito genérico.
+                toast.error(
+                    result.message ||
+                    'Administrador creado, pero no se pudo enviar el correo de verificación.',
+                    { duration: 6000 }
+                );
+            } else {
+                toast.success(result.message || 'Administrador creado exitosamente');
+            }
             setForm(emptyForm);
             setShowForm(false);
             loadAdmins();

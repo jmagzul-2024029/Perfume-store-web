@@ -181,7 +181,7 @@ const LoginPage = () => {
               label="Usuario / Email"
               icon={Mail}
               type="text"
-              placeholder="admin@perfumeshop.com"
+              placeholder="admin@lessencedefrance.com"
               value={email}
               onChange={(event) =>
                 setEmail(event.target.value)
@@ -256,6 +256,15 @@ const LoginPage = () => {
                 className="ml-2"
               />
             </Button>
+
+            {/* Continuar sin iniciar sesión */}
+            <button
+              type="button"
+              onClick={() => navigate('/')}
+              className="w-full py-3 text-[10px] sm:text-xs font-black uppercase tracking-widest text-[#1c1712] border-2 border-[#1c1712] hover:bg-[#1c1712] hover:text-white transition-colors"
+            >
+              Continuar sin iniciar sesión
+            </button>
 
           </form>
 

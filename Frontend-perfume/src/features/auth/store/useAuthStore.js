@@ -146,7 +146,12 @@ export const useAuthStore = create(
         try {
           const response = await api.post('/auth/create-manager', managerData);
           set({ isLoading: false });
-          return { success: true, message: response.data.message, data: response.data.user };
+          return {
+            success: true,
+            message: response.data.message,
+            data: response.data.user,
+            emailSent: response.data.emailSent,
+          };
         } catch (error) {
           set({ isLoading: false });
           return { success: false, error: error.response?.data?.message || 'Error al crear gerente' };
