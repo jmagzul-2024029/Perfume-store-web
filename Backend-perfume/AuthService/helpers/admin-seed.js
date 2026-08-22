@@ -23,7 +23,7 @@ export const seedAdminUser = async () => {
       const superAdminRole = await Role.findOne({ where: { Name: SUPER_ADMIN_ROLE } });
 
       if (!superAdminRole) {
-        console.error('❌ Error: El rol de SUPER_ADMIN no existe en la base de datos.');
+        console.error('Error: El rol de SUPER_ADMIN no existe en la base de datos.');
         return;
       }
 
@@ -40,7 +40,7 @@ export const seedAdminUser = async () => {
       await UserEmail.create({ UserId: superAdminUser.Id, EmailVerified: true });
       await UserRole.create({ UserId: superAdminUser.Id, RoleId: superAdminRole.Id });
 
-      console.log('🎉 SUPER ADMIN creado exitosamente.');
+      console.log('SUPER ADMIN creado exitosamente.');
     } else {
       await superAdminUser.update({ Email: superAdminEmail, Password: hashedPassword });
 
@@ -51,10 +51,10 @@ export const seedAdminUser = async () => {
         await UserEmail.create({ UserId: superAdminUser.Id, EmailVerified: true });
       }
 
-      console.log('✅ SUPER ADMIN sincronizado.');
+      console.log('SUPER ADMIN sincronizado.');
     }
 
   } catch (error) {
-    console.error('❌ Error en el seeder de usuario Super Admin:', error.message);
+    console.error('Error en el seeder de usuario Super Admin:', error.message);
   }
 };
