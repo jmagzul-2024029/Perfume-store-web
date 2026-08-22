@@ -86,19 +86,15 @@ export default function ProductsPage() {
     };
 
     return (
-        <main className="min-h-screen bg-[#fdfbfa] text-[#1c1712]"> {/* Color de fondo */}
+        <main className="min-h-screen bg-[#fcfced] text-[#1c1712]"> {/* Color de fondo */}
 
             {/* HERO */}
             <section className="px-6 py-20 md:px-12 lg:px-20">
                 <div className="mx-auto max-w-7xl">
 
-                    <span className="text-sm font-black uppercase tracking-[0.35em] text-[#890418]">
-                        L'ESSENCE DE FRANCE
-                    </span>
-
                     <h1 className="mt-4 max-w-4xl text-5xl font-black uppercase tracking-tighter md:text-7xl">
                         Encuentra tu
-                        <span className="block text-[#b76e79]">
+                        <span className="block text-[#d01a36]">
                             fragancia ideal
                         </span>
                     </h1>
@@ -115,15 +111,15 @@ export default function ProductsPage() {
             {/* CATÁLOGO */}
             {catalogDriveUrl && (
                 <section className="px-6 pb-4 md:px-12 lg:px-20">
-                    <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 border-2 border-[#1c1712] bg-white p-5 shadow-[6px_6px_0px_#b76e79]">
+                    <div className="mx-auto flex max-w-7xl flex-col items-start gap-4 border-2 border-[#1c1712] bg-white p-5 shadow-[6px_6px_0px_#808080] sm:flex-row sm:items-center sm:justify-between">
 
                         <div>
-                            <p className="text-xs font-black uppercase tracking-widest text-[#b42339]">
+                            <p className="text-xs font-black uppercase tracking-widest text-[#d01a36]">
                                 Nuestros catálogos
                             </p>
 
                             <p className="mt-1 text-sm text-[#6b5c5e]">
-                                Consulta nuestros catálogos de perfumes para hombres y mujeres en PDF.
+                                Consulta nuestros catálogos de perfumes para hombres y mujeres en PDF presionando este botón.
                             </p>
                         </div>
 
@@ -131,7 +127,7 @@ export default function ProductsPage() {
                             href={catalogDriveUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="shrink-0 border-2 border-[#1c1712] bg-[#1c1712] px-5 py-3 text-xs font-black uppercase tracking-widest text-white transition hover:bg-[#696969]"
+                            className="w-full shrink-0 border-2 border-[#1c1712] bg-[#1c1712] px-5 py-3 text-center text-xs font-black uppercase tracking-widest text-white hover:bg-[#cfcfcf] hover:text-black sm:w-auto hover:scale-105 transition-transform duration-200"
                         >
                             Ver catálogos
                         </a>
@@ -147,7 +143,7 @@ export default function ProductsPage() {
                     <div className="mb-6 flex flex-wrap items-end justify-between gap-6 border-b-2 border-[#1c1712]/10 pb-5">
 
                         <div>
-                            <span className="text-xs font-black uppercase tracking-widest text-[#b76e79]">
+                            <span className="text-xs font-black uppercase tracking-widest text-[#e20022]">
                                 Colección
                             </span>
 
@@ -177,7 +173,7 @@ export default function ProductsPage() {
                                     value={search}
                                     onChange={(event) => setSearch(event.target.value)}
                                     placeholder="Buscar por nombre, marca o descripción..."
-                                    className="w-full border-2 border-[#1c1712] bg-white py-3 pl-11 pr-4 text-sm font-medium placeholder:text-[#a89b9d] focus:outline-none focus:ring-2 focus:ring-[#b76e79]"
+                                    className="w-full border-2 border-[#1c1712] bg-white py-3 pl-11 pr-4 text-sm font-medium placeholder:text-[#a89b9d] focus:outline-none focus:ring-2 focus:ring-[#af0a23]"
                                 />
                                 {hasActiveSearch && (
                                     <button
@@ -194,11 +190,10 @@ export default function ProductsPage() {
                             <button
                                 type="button"
                                 onClick={() => setShowFilters((prev) => !prev)}
-                                className={`flex shrink-0 items-center justify-center gap-2 border-2 border-[#1c1712] px-5 py-3 text-xs font-black uppercase tracking-widest transition ${
-                                    showFilters || activeFilterCount > 0
-                                        ? 'bg-[#1c1712] text-white'
-                                        : 'bg-white text-[#1c1712] hover:bg-[#1c1712] hover:text-white'
-                                }`}
+                                className={`flex shrink-0 items-center justify-center gap-2 border-2 border-[#1c1712] px-5 py-3 text-xs font-black uppercase tracking-widest hover:scale-110 transition-transform duration-200 ${showFilters || activeFilterCount > 0
+                                    ? 'bg-[#1c1712] text-white'
+                                    : 'bg-black text-white'
+                                    }`}
                             >
                                 <SlidersHorizontal size={16} />
                                 Filtros
@@ -212,7 +207,7 @@ export default function ProductsPage() {
                         </div>
 
                         {showFilters && (
-                            <div className="flex flex-wrap items-end gap-4 border-2 border-[#1c1712] bg-white p-5 shadow-[5px_5px_0px_#b76e79]">
+                            <div className="flex flex-wrap items-end gap-4 border-2 border-[#1c1712] bg-white p-5 shadow-[5px_5px_0px_#808080]">
 
                                 <div className="flex flex-col gap-1">
                                     <label className="text-[10px] font-black uppercase tracking-widest text-[#6b5c5e]">
@@ -223,7 +218,7 @@ export default function ProductsPage() {
                                         onChange={(event) =>
                                             setFilters((prev) => ({ ...prev, gender: event.target.value }))
                                         }
-                                        className="border-2 border-[#1c1712] bg-white px-3 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#b76e79]"
+                                        className="border-2 border-[#1c1712] bg-white px-3 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#4b499f] cursor-pointer"
                                     >
                                         <option value="">Todos</option>
                                         {Object.entries(GENDER_LABELS).map(([value, label]) => (
@@ -244,7 +239,7 @@ export default function ProductsPage() {
                                             onChange={(event) =>
                                                 setFilters((prev) => ({ ...prev, category: event.target.value }))
                                             }
-                                            className="border-2 border-[#1c1712] bg-white px-3 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#b76e79]"
+                                            className="border-2 border-[#1c1712] bg-white px-3 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#483D8B] cursor-pointer"
                                         >
                                             <option value="">Todas</option>
                                             {categories.map((category) => (
@@ -265,7 +260,7 @@ export default function ProductsPage() {
                                         onChange={(event) =>
                                             setFilters((prev) => ({ ...prev, sort: event.target.value }))
                                         }
-                                        className="border-2 border-[#1c1712] bg-white px-3 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#b76e79]"
+                                        className="border-2 border-[#1c1712] bg-white px-3 py-2 text-sm font-bold focus:outline-none focus:ring-2 focus:ring-[#483D8B] cursor-pointer"
                                     >
                                         <option value="">Más recientes</option>
                                         <option value="price-asc">Precio: menor a mayor</option>
@@ -372,7 +367,7 @@ export default function ProductsPage() {
 
                                         <div className="p-3">
 
-                                            <span className="text-[10px] font-black uppercase tracking-widest text-[#b76e79]">
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-[#d16575]">
                                                 {product.brand}
                                             </span>
 

@@ -173,7 +173,7 @@ export default function AdminProductsPage() {
     };
 
     return (
-        <main className="min-h-screen bg-[#fdfbfa] px-6 py-12 text-[#1c1712] md:px-12 lg:px-20">
+        <main className="min-h-screen bg-[#fcfced] px-6 py-12 text-[#1c1712] md:px-12 lg:px-20">
 
             <div className="mx-auto max-w-7xl">
 
@@ -188,9 +188,9 @@ export default function AdminProductsPage() {
                             Gestión de perfumes
                         </h1>
 
-                        <p className="mt-3 text-[#6b5c5e]">
+                        {/*<p className="mt-3 text-[#6b5c5e]">
                             Administra el catálogo de la tienda.
-                        </p>
+                        </p>*/}
                     </div>
 
                     <button
@@ -202,7 +202,7 @@ export default function AdminProductsPage() {
                                 setShowForm(true);
                             }
                         }}
-                        className="border-2 border-[#1c1712] bg-[#1c1712] px-6 py-3 text-sm font-black uppercase tracking-wider text-white transition hover:bg-[#22C55E]"
+                        className="cursor-pointer rounded-lg border-2 border-[#4b4b4b] bg-[#1c1712] px-6 py-3 text-sm font-black uppercase tracking-wider text-white hover:bg-[#a0a2a0c6] hover:text-black transition-transform duration-200 hover:scale-105"
                     >
                         {showForm
                             ? 'Cancelar'
@@ -214,7 +214,7 @@ export default function AdminProductsPage() {
                 {showForm && (
                     <form
                         onSubmit={handleSubmit}
-                        className="mb-12 border-2 border-[#1c1712] bg-white p-6 shadow-[8px_8px_0px_#b76e79] md:p-8"
+                        className="mb-12 border-2 border-[#1c1712] bg-white p-6 shadow-[8px_8px_0px_#DEB887] md:p-8"
                     >
 
                         <h2 className="mb-8 text-2xl font-black uppercase">
@@ -248,7 +248,7 @@ export default function AdminProductsPage() {
                                     name="brand"
                                     value={form.brand}
                                     onChange={handleChange}
-                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#b76e79]"
+                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#A0522D]"
                                     placeholder="Marca"
                                 />
                             </div>
@@ -263,7 +263,7 @@ export default function AdminProductsPage() {
                                     value={form.description}
                                     onChange={handleChange}
                                     rows={4}
-                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#b76e79]"
+                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#A0522D]"
                                     placeholder="Descripción del perfume"
                                 />
                             </div>
@@ -280,7 +280,7 @@ export default function AdminProductsPage() {
                                     step="0.01"
                                     value={form.price}
                                     onChange={handleChange}
-                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#b76e79]"
+                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#A0522D]"
                                 />
                             </div>
 
@@ -295,7 +295,7 @@ export default function AdminProductsPage() {
                                     min="0"
                                     value={form.stock}
                                     onChange={handleChange}
-                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#b76e79]"
+                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#A0522D]"
                                 />
                             </div>
 
@@ -308,7 +308,7 @@ export default function AdminProductsPage() {
                                     name="category"
                                     value={form.category}
                                     onChange={handleChange}
-                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#b76e79]"
+                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#A0522D]"
                                     placeholder="Eau de Parfum"
                                 />
                             </div>
@@ -322,7 +322,7 @@ export default function AdminProductsPage() {
                                     name="gender"
                                     value={form.gender}
                                     onChange={handleChange}
-                                    className="w-full border-2 border-[#1c1712] bg-white px-4 py-3 outline-none focus:border-[#b76e79]"
+                                    className="w-full border-2 border-[#1c1712] bg-white px-4 py-3 outline-none focus:border-[#A0522D]"
                                 >
                                     <option value="HOMBRE">
                                         Hombre
@@ -347,7 +347,7 @@ export default function AdminProductsPage() {
                                     name="size"
                                     value={form.size}
                                     onChange={handleChange}
-                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#b76e79]"
+                                    className="w-full border-2 border-[#1c1712] px-4 py-3 outline-none focus:border-[#A0522D]"
                                     placeholder="100 ml"
                                 />
                             </div>
@@ -363,7 +363,7 @@ export default function AdminProductsPage() {
                                         <img
                                             src={imagePreview}
                                             alt="Previsualización"
-                                            className="h-24 w-24 flex-shrink-0 border-2 border-[#1c1712] object-cover"
+                                            className="h-24 w-24 shrink-0 border-2 border-[#1c1712] object-cover"
                                         />
                                     )}
 
@@ -390,7 +390,7 @@ export default function AdminProductsPage() {
                             <button
                                 type="submit"
                                 disabled={isSaving}
-                                className="border-2 border-[#1c1712] bg-[#b76e79] px-8 py-3 text-sm font-black uppercase text-[#1c1712] disabled:opacity-50"
+                                className="border-2 border-[#1c1712] bg-[#FFDAB9] px-8 py-3 text-sm font-black uppercase text-[#1c1712] disabled:opacity-50 hover:scale-105 transition-transform duration-200 cursor-pointer hover:bg-[#f3ad74]"
                             >
                                 {isSaving
                                     ? 'Guardando...'
@@ -410,7 +410,7 @@ export default function AdminProductsPage() {
 
                     <div className="overflow-x-auto">
 
-                        <table className="w-full min-w-[900px]">
+                        <table className="w-full min-w-225">
 
                             <thead className="bg-[#1c1712] text-left text-xs uppercase tracking-wider text-white">
                                 <tr>
@@ -505,7 +505,7 @@ export default function AdminProductsPage() {
                                                         onClick={() =>
                                                             handleEdit(product)
                                                         }
-                                                        className="border-2 border-[#1c1712] px-3 py-2 text-xs font-black uppercase hover:bg-[#f7eef0]"
+                                                        className="cursor-pointer border-2 border-[#1c1712] px-3 py-2 text-xs font-black uppercase hover:bg-[#f7eef0] hover:scale-105 transition-transform duration-200"
                                                     >
                                                         Editar
                                                     </button>
@@ -516,7 +516,7 @@ export default function AdminProductsPage() {
                                                             handleDelete(product)
                                                         }
                                                         disabled={isSaving}
-                                                        className="border-2 border-red-700 px-3 py-2 text-xs font-black uppercase text-red-700 hover:bg-red-50 disabled:opacity-50"
+                                                        className="cursor-pointer border-2 border-red-700 px-3 py-2 text-xs font-black uppercase text-red-700 hover:bg-red-50 disabled:opacity-50 hover:scale-105 transition-transform duration-200"
                                                     >
                                                         Eliminar
                                                     </button>
