@@ -76,11 +76,6 @@ const LoginPage = () => {
 
         const loggedUser = useAuthStore.getState().user;
 
-        /*
-         * Solamente los administradores necesitan iniciar sesión.
-         * Después de autenticarse correctamente van directamente
-         * al panel administrativo.
-         */
         navigate('/dashboard');
 
         return;
@@ -181,7 +176,7 @@ const LoginPage = () => {
               label="Usuario / Email"
               icon={Mail}
               type="text"
-              placeholder="admin@lessencedefrance.com"
+              placeholder="correo@gmail.com"
               value={email}
               onChange={(event) =>
                 setEmail(event.target.value)

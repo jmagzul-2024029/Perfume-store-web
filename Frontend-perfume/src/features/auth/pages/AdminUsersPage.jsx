@@ -74,15 +74,18 @@ export const AdminUsersPage = () => {
     };
 
     return (
-        <main className="min-h-screen bg-[#fdfbfa] px-6 py-12 md:px-12 lg:px-20">
-            <div className="mx-auto max-w-5xl">
+        <main className="min-h-screen bg-[#fcfced] px-4 py-6 text-[#1c1712] sm:px-6 sm:py-10 md:px-12 lg:px-20">
+            <div className="mx-auto w-full max-w-5xl">
 
-                <div className="mb-10 flex items-end justify-between gap-6 border-b-2 border-[#1c1712]/10 pb-5">
-                    <div>
-                        <span className="text-xs font-black uppercase tracking-widest text-[#b76e79]">
+                {/* ENCABEZADO */}
+                <div className="mb-8 flex flex-col gap-5 border-b-2 border-[#1c1712]/10 pb-5 sm:mb-10 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+
+                    <div className="min-w-0">
+                        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-[#b76e79] sm:text-xs sm:tracking-widest">
                             Super Admin
                         </span>
-                        <h1 className="mt-2 text-3xl font-black uppercase tracking-tight">
+
+                        <h1 className="mt-1 text-2xl font-black uppercase tracking-tight sm:mt-2 sm:text-3xl">
                             Administradores
                         </h1>
                     </div>
@@ -90,77 +93,119 @@ export const AdminUsersPage = () => {
                     <button
                         type="button"
                         onClick={() => setShowForm((v) => !v)}
-                        className="flex items-center gap-2 border-2 border-[#1c1712] bg-[#1c1712] px-4 py-2 text-xs font-black uppercase tracking-widest text-white transition hover:bg-[#b76e79]"
+                        className="cursor-pointer rounded-lg flex w-full items-center justify-center gap-2 border-2 border-[#1c1712] bg-[#1c1712] px-4 py-3 text-[11px] font-black uppercase tracking-widest text-white transition hover:bg-[#b2b2b2] hover:text-black sm:w-auto sm:shrink-0 sm:px-7 sm:py-2"
                     >
                         <UserPlus size={14} />
                         {showForm ? 'Cancelar' : 'Nuevo admin'}
                     </button>
                 </div>
 
+                {/* FORMULARIO */}
                 {showForm && (
                     <form
                         onSubmit={handleSubmit}
-                        className="mb-10 grid grid-cols-1 gap-4 border-2 border-[#1c1712] bg-white p-6 shadow-[8px_8px_0px_#b76e79] sm:grid-cols-2"
+                        className="mb-8 grid grid-cols-1 gap-3 border-2 border-[#1c1712] bg-white p-4 shadow-[5px_5px_0px_#b76e79] sm:mb-10 sm:grid-cols-2 sm:gap-4 sm:p-6 sm:shadow-[8px_8px_0px_#b76e79]"
                     >
                         <input
-                            name="name" placeholder="Nombre" value={form.name} onChange={handleChange} required
-                            className="border-2 border-[#1c1712]/20 px-4 py-2 text-sm focus:border-[#b76e79] focus:outline-none"
+                            name="name"
+                            placeholder="Nombre"
+                            value={form.name}
+                            onChange={handleChange}
+                            required
+                            className="min-w-0 border-2 border-[#1c1712]/20 px-3 py-3 text-sm focus:border-[#b76e79] focus:outline-none sm:px-4 sm:py-2"
                         />
+
                         <input
-                            name="surname" placeholder="Apellido" value={form.surname} onChange={handleChange} required
-                            className="border-2 border-[#1c1712]/20 px-4 py-2 text-sm focus:border-[#b76e79] focus:outline-none"
+                            name="surname"
+                            placeholder="Apellido"
+                            value={form.surname}
+                            onChange={handleChange}
+                            required
+                            className="min-w-0 border-2 border-[#1c1712]/20 px-3 py-3 text-sm focus:border-[#b76e79] focus:outline-none sm:px-4 sm:py-2"
                         />
+
                         <input
-                            name="username" placeholder="Usuario" value={form.username} onChange={handleChange} required
-                            className="border-2 border-[#1c1712]/20 px-4 py-2 text-sm focus:border-[#b76e79] focus:outline-none"
+                            name="username"
+                            placeholder="Usuario"
+                            value={form.username}
+                            onChange={handleChange}
+                            required
+                            className="min-w-0 border-2 border-[#1c1712]/20 px-3 py-3 text-sm focus:border-[#b76e79] focus:outline-none sm:px-4 sm:py-2"
                         />
+
                         <input
-                            name="email" type="email" placeholder="Correo" value={form.email} onChange={handleChange} required
-                            className="border-2 border-[#1c1712]/20 px-4 py-2 text-sm focus:border-[#b76e79] focus:outline-none"
+                            name="email"
+                            type="email"
+                            placeholder="Correo"
+                            value={form.email}
+                            onChange={handleChange}
+                            required
+                            className="min-w-0 border-2 border-[#1c1712]/20 px-3 py-3 text-sm focus:border-[#b76e79] focus:outline-none sm:px-4 sm:py-2"
                         />
+
                         <input
-                            name="phone" placeholder="Teléfono (8 dígitos)" value={form.phone} onChange={handleChange} required
-                            className="border-2 border-[#1c1712]/20 px-4 py-2 text-sm focus:border-[#b76e79] focus:outline-none"
+                            name="phone"
+                            placeholder="Teléfono (8 dígitos)"
+                            value={form.phone}
+                            onChange={handleChange}
+                            required
+                            className="min-w-0 border-2 border-[#1c1712]/20 px-3 py-3 text-sm focus:border-[#b76e79] focus:outline-none sm:px-4 sm:py-2"
                         />
+
                         <input
-                            name="password" type="password" placeholder="Contraseña temporal" value={form.password} onChange={handleChange} required
-                            className="border-2 border-[#1c1712]/20 px-4 py-2 text-sm focus:border-[#b76e79] focus:outline-none"
+                            name="password"
+                            type="password"
+                            placeholder="Contraseña temporal"
+                            value={form.password}
+                            onChange={handleChange}
+                            required
+                            className="min-w-0 border-2 border-[#1c1712]/20 px-3 py-3 text-sm focus:border-[#b76e79] focus:outline-none sm:px-4 sm:py-2"
                         />
 
                         <button
                             type="submit"
                             disabled={isLoading}
-                            className="sm:col-span-2 mt-2 border-2 border-[#1c1712] bg-[#1c1712] px-6 py-3 text-sm font-black uppercase tracking-widest text-white transition hover:bg-[#b76e79] disabled:opacity-50"
+                            className="mt-2 w-full border-2 border-[#1c1712] bg-[#1c1712] px-4 py-3 text-xs font-black uppercase tracking-widest text-white transition hover:bg-[#b76e79] disabled:opacity-50 sm:col-span-2 sm:px-6 sm:text-sm"
                         >
                             {isLoading ? 'Creando...' : 'Crear administrador'}
                         </button>
                     </form>
                 )}
 
-                <div className="border-2 border-[#1c1712] bg-white">
+                {/* LISTA DE ADMINISTRADORES */}
+                <div className="w-full border-2 border-[#1c1712] bg-white">
+
                     {admins.length === 0 ? (
-                        <p className="p-8 text-center text-[#6b5c5e]">
+                        <p className="p-6 text-center text-sm text-[#6b5c5e] sm:p-8">
                             No hay administradores adicionales todavía.
                         </p>
                     ) : (
                         admins.map((admin) => (
                             <div
                                 key={admin.id}
-                                className="flex items-center justify-between gap-4 border-b border-[#1c1712]/10 p-5 last:border-b-0"
+                                className="flex flex-col gap-4 border-b border-[#1c1712]/10 p-4 last:border-b-0 sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:p-5"
                             >
-                                <div>
-                                    <p className="font-black uppercase">
+                                {/* INFORMACIÓN */}
+                                <div className="min-w-0 flex-1">
+                                    <p className="truncate text-sm font-black uppercase sm:text-base">
                                         {admin.name} {admin.surname}
                                     </p>
-                                    <p className="text-sm text-[#6b5c5e]">
-                                        {admin.email} &middot; {admin.phone}
+
+                                    <p className="mt-1 break-all text-xs text-[#6b5c5e] sm:text-sm">
+                                        {admin.email} · {admin.phone}
                                     </p>
                                 </div>
 
+                                {/* BOTÓN */}
                                 <button
                                     type="button"
-                                    onClick={() => handleDelete(admin.id, `${admin.name} ${admin.surname}`)}
-                                    className="flex items-center gap-2 border-2 border-red-600 px-3 py-2 text-xs font-black uppercase text-red-600 transition hover:bg-red-600 hover:text-white"
+                                    onClick={() =>
+                                        handleDelete(
+                                            admin.id,
+                                            `${admin.name} ${admin.surname}`
+                                        )
+                                    }
+                                    className="cursor-pointer flex w-full shrink-0 items-center justify-center gap-2 border-2 border-red-600 px-3 py-2.5 text-[10px] font-black uppercase tracking-wide text-red-600 transition hover:bg-red-600 hover:text-white sm:w-auto sm:text-xs"
                                 >
                                     <Trash2 size={14} />
                                     Eliminar

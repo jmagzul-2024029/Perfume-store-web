@@ -52,7 +52,7 @@ export const ForgotPasswordPage = () => {
                     label="Correo Electrónico"
                     icon={Mail}
                     type="email"
-                    placeholder="admin@gmail.com"
+                    placeholder="correo@gmail.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
