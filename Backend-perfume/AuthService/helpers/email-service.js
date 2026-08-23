@@ -1,13 +1,10 @@
-import * as Brevo from '@getbrevo/brevo';
+import { TransactionalEmailsApi, SendSmtpEmail } from '@getbrevo/brevo';
 
-const apiInstance = new Brevo.TransactionalEmailsApi();
-apiInstance.setApiKey(
-  Brevo.TransactionalEmailsApiApiKeys.apiKey,
-  process.env.BREVO_API_KEY
-);
+const apiInstance = new TransactionalEmailsApi();
+apiInstance.setApiKey(0, process.env.BREVO_API_KEY);
 
 export const sendVerificationEmail = async (to, token) => {
-  const sendSmtpEmail = new Brevo.SendSmtpEmail();
+  const sendSmtpEmail = new SendSmtpEmail();
 
   sendSmtpEmail.subject = "Verifica tu cuenta - L'ESSENCE DE FRANCE";
   sendSmtpEmail.htmlContent = `
