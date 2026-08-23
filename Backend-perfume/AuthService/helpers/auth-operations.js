@@ -127,21 +127,32 @@ export const registerUserHelper = async (userData) => {
       tokenExpiry
     );
 
-    // Intentamos enviar el correo de verificación ANTES de responder.
-    // Antes esto corría en background con un catch silencioso: si el SMTP
-    // fallaba (credenciales inválidas, Gmail bloqueando, etc.) la cuenta
-    // quedaba creada pero nadie se enteraba de que el correo nunca salió,
-    // y el usuario/admin creado quedaba sin poder verificarse.
+    // Los administradores creados por el SUPER_ADMIN (vía /create-manager) no
+    // dependen del correo de verificación: se dan de alta ya verificados y
+    // pueden iniciar sesión de inmediato. Solo los registros normales de
+    // clientes pasan por el flujo de verificación por email.
+    const skipEmailVerification = role === 'ADMIN_ROLE';
+
     let emailSent = true;
     let emailError = null;
-    try {
-      await sendVerificationEmail(email, name, verificationToken);
-    } catch (err) {
-      emailSent = false;
-      emailError = err.message;
-      console.error(
-        `❌ No se pudo enviar el correo de verificación a ${email}: ${err.message}`
-      );
+
+    if (skipEmailVerification) {
+      await markEmailAsVerified(newUser.Id);
+    } else {
+      // Intentamos enviar el correo de verificación ANTES de responder.
+      // Antes esto corría en background con un catch silencioso: si el SMTP
+      // fallaba (credenciales inválidas, Gmail bloqueando, etc.) la cuenta
+      // quedaba creada pero nadie se enteraba de que el correo nunca salió,
+      // y el usuario/admin creado quedaba sin poder verificarse.
+      try {
+        await sendVerificationEmail(email, name, verificationToken);
+      } catch (err) {
+        emailSent = false;
+        emailError = err.message;
+        console.error(
+          `❌ No se pudo enviar el correo de verificación a ${email}: ${err.message}`
+        );
+      }
     }
 
     // Note: No JWT token returned in register (aligned with .NET RegisterResponseDto)
@@ -151,11 +162,13 @@ export const registerUserHelper = async (userData) => {
     return {
       success: true,
       user: buildUserResponse(newUser),
-      message: emailSent
+      message: skipEmailVerification
+        ? 'Administrador creado exitosamente. Ya puede iniciar sesión sin verificar el correo.'
+        : emailSent
         ? 'Usuario registrado exitosamente. Por favor, verifica tu email para activar la cuenta.'
         : 'Usuario registrado, pero no se pudo enviar el correo de verificación. Usa la opción de reenviar verificación o revisa la configuración SMTP.',
-      emailVerificationRequired: true,
-      emailSent,
+      emailVerificationRequired: !skipEmailVerification,
+      emailSent: skipEmailVerification ? true : emailSent,
       ...(emailError ? { emailError } : {}),
     };
   } catch (error) {
